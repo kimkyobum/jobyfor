@@ -1,0 +1,9 @@
+# 예시: 특정 파일 무시
+secret_key.txt
+
+# 예시: 특정 폴더 전체 무시
+node_modules/
+.vscode/
+
+# 예시: 특정 확장자 전체 무시
+*.log
