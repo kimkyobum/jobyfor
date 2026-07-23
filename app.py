@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 토스 스타일 디자인 및 부드러운 페이드 인 애니메이션 CSS 주입 (들여쓰기 제거로 마크다운 코드 노출 원천 차단)
+# 2. 토스 스타일 디자인 및 부드러운 페이드 인 애니메이션 CSS 주입
 st.markdown(
     """
 <style>
@@ -150,81 +150,6 @@ body, [class*="css"] {
     color: #64748b;
     line-height: 1.6;
     margin-bottom: 40px;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-}
-
-.feature-card {
-    background: #f8fafc;
-    border-radius: 24px;
-    padding: 36px 28px;
-    border: 1px solid #f1f5f9;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.feature-card:hover {
-    transform: translateY(-6px);
-    background: #ffffff;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-    border-color: #e2e8f0;
-}
-
-.feature-icon {
-    font-size: 28px;
-    margin-bottom: 18px;
-    background: #ffffff;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-}
-
-.feature-card h3 {
-    font-size: 19px;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 10px 0;
-}
-
-.feature-card p {
-    font-size: 14px;
-    color: #64748b;
-    margin: 0;
-    line-height: 1.6;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.team-card {
-    background: #f8fafc;
-    border-radius: 24px;
-    padding: 36px;
-    border: 1px solid #f1f5f9;
-}
-
-.team-card h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 12px;
-}
-
-.team-card p {
-    font-size: 15px;
-    color: #64748b;
-    line-height: 1.6;
-    margin: 0;
 }
 
 .app-container {
@@ -385,62 +310,63 @@ div.stButton > button[kind="primary"]:hover {
     ):
       navigate_to("dashboard")
 
-  # --- [섹션 2] 아래로 스크롤하면 나오는 '핵심 기능 소개' ---
+  # --- [섹션 2] 아래로 스크롤하면 나오는 '핵심 기능 소개' (스트림릿 네이티브 컴포넌트 활용) ---
   st.markdown(
       """
 <div class="scroll-section">
     <div class="section-tag">Core Features</div>
     <div class="section-heading">성장을 기록하고,<br>커리어를 완성하세요</div>
     <div class="section-desc">마이스터고 생활에 꼭 필요한 기능들만 담았습니다.</div>
-    
-    <div class="feature-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🎯</div>
-            <h3>맞춤형 진로 로드맵</h3>
-            <p>전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고 관리합니다.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📅</div>
-            <h3>실습 및 경험 기록</h3>
-            <p>학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을 구축합니다.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">✨</div>
-            <h3>AI STAR 자소서 변환</h3>
-            <p>축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다.</p>
-        </div>
-    </div>
 </div>
 """,
       unsafe_allow_html=True,
   )
 
-  # --- [섹션 3] 아래로 스크롤하면 나오는 '만든 사람들 (팀 소개)' ---
+  f_col1, f_col2, f_col3 = st.columns(3)
+  with f_col1:
+    with st.container(border=True):
+      st.markdown("### 🎯 맞춤형 진로 로드맵")
+      st.markdown(
+          "전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고 관리합니다."
+      )
+  with f_col2:
+    with st.container(border=True):
+      st.markdown("### 📅 실습 및 경험 기록")
+      st.markdown(
+          "학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을 구축합니다."
+      )
+  with f_col3:
+    with st.container(border=True):
+      st.markdown("### ✨ AI STAR 자소서 변환")
+      st.markdown(
+          "축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다."
+      )
+
+  # --- [섹션 3] 아래로 스크롤하면 나오는 '만든 사람들 (팀 소개)' (스트림릿 네이티브 컴포넌트 활용) ---
   st.markdown(
       """
-<div class="scroll-section">
+<div class="scroll-section" style="margin-top: 40px;">
     <div class="section-tag">About Us</div>
     <div class="section-heading">만든 사람들</div>
     <div class="section-desc">학생들의 빛나는 도전과 가능성을 믿는 팀원들이 함께 만들었습니다.</div>
-    
-    <div class="team-grid">
-        <div class="team-card">
-            <h3>💡 왜 MyStair를 만들었나요?</h3>
-            <p>
-                일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가 되도록 돕고 싶었습니다.
-            </p>
-        </div>
-        <div class="team-card">
-            <h3>🚀 우리의 목표와 비전</h3>
-            <p>
-                단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고 혁신적인 첫 번째 계단이 되는 것입니다.
-            </p>
-        </div>
-    </div>
 </div>
 """,
       unsafe_allow_html=True,
   )
+
+  t_col1, t_col2 = st.columns(2)
+  with t_col1:
+    with st.container(border=True):
+      st.markdown("### 💡 왜 MyStair를 만들었나요?")
+      st.markdown(
+          "일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가 되도록 돕고 싶었습니다."
+      )
+  with t_col2:
+    with st.container(border=True):
+      st.markdown("### 🚀 우리의 목표와 비전")
+      st.markdown(
+          "단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고 혁신적인 첫 번째 계단이 되는 것입니다."
+      )
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
