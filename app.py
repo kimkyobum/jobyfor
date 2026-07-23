@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 디자인 및 UI 스타일 주입
+# 2. 디자인 및 UI 스타일 주입 (꾸미기 효과 포함)
 st.markdown(
     f"""
     <style>
@@ -42,7 +42,7 @@ st.markdown(
 
         .block-container {{
             padding-top: 1.5rem;
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
             max-width: 1200px;
         }}
 
@@ -60,20 +60,24 @@ st.markdown(
         /* 히어로 섹션 */
         .hero-section {{
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }}
         
         .hero-graphic {{
-            width: 340px;
+            width: 320px;
             height: auto;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             object-fit: contain;
             background: transparent !important;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease;
+        }}
+        .hero-graphic:hover {{
+            transform: translateY(-5px);
         }}
 
         .hero-title {{
@@ -89,9 +93,60 @@ st.markdown(
         .hero-subtitle {{
             font-size: 18px;
             color: #444;
-            margin: 0 0 40px 0;
+            margin: 0 0 35px 0;
             font-weight: 500;
             text-align: center;
+        }}
+
+        /* 꾸며진 기능 소개 카드 섹션 */
+        .feature-container {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            padding: 0 10px;
+        }}
+
+        .feature-card {{
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+            text-align: left;
+        }}
+
+        .feature-card:hover {{
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(126, 87, 194, 0.08);
+            border-color: #d1c4e9;
+        }}
+
+        .feature-icon {{
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: #f4f5fa;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+
+        .feature-card h3 {{
+            font-size: 18px;
+            font-weight: 800;
+            color: #111;
+            margin: 0 0 10px 0;
+        }}
+
+        .feature-card p {{
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
         }}
 
         /* 대시보드 화면 스타일 */
@@ -162,7 +217,7 @@ st.markdown(
 )
 
 # =========================================================
-# [PAGE 1] 랜딩 페이지 (채용공고/멘토링 카드 제거 완료)
+# [PAGE 1] 랜딩 페이지 (꾸며진 버전)
 # =========================================================
 if st.session_state.page == "landing":
   # 히어로 섹션 (이미지 + 타이틀 + 서브타이틀)
@@ -207,7 +262,31 @@ if st.session_state.page == "landing":
     ):
       navigate_to("dashboard")
 
-  st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
+  st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
+
+  # 하단 핵심 기능 소개 카드 3가지 (새롭게 추가된 꾸밈 요소)
+  st.markdown(
+      """
+        <div class="feature-container">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>맞춤형 진로 로드맵</h3>
+                <p>마이스터고 전공과 역량에 딱 맞춘 단계별 성장 경로를 설계하고 관리합니다.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>실습 및 경험 기록</h3>
+                <p>학교 생활과 실습 활동을 캘린더에 기록하여 나만의 커리어 자산을 쌓습니다.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>AI STAR 자소서 변환</h3>
+                <p>쌓아온 활동 기록을 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다.</p>
+            </div>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
