@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 디자인 및 UI 스타일 주입 (코드 노출 방지를 위해 따옴표 구조 최적화)
+# 2. 디자인 및 UI 스타일 주입
 st.markdown(
     f"""
     <style>
@@ -60,16 +60,16 @@ st.markdown(
         /* 히어로 섹션 */
         .hero-section {{
             text-align: center;
-            margin-top: 10px;
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }}
         
         .hero-graphic {{
-            width: 320px;
+            width: 340px;
             height: auto;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             object-fit: contain;
             background: transparent !important;
             border-radius: 24px;
@@ -88,152 +88,10 @@ st.markdown(
         
         .hero-subtitle {{
             font-size: 18px;
-            color: #333;
-            margin: 0 0 35px 0;
+            color: #444;
+            margin: 0 0 40px 0;
             font-weight: 500;
             text-align: center;
-        }}
-
-        /* 하단 벤토 위젯 영역 */
-        .bottom-widgets {{
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }}
-        
-        .widget-group {{
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-        }}
-        
-        .icon-pillar {{
-            background: #fff;
-            border-radius: 20px;
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #eaeaea;
-            height: fit-content;
-        }}
-        .icon-pillar div {{
-            font-size: 24px;
-            text-align: center;
-        }}
-
-        .info-card {{
-            background: #fff;
-            border-radius: 20px;
-            padding: 25px 30px;
-            width: 320px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #eaeaea;
-        }}
-        .info-card h3 {{
-            margin: 0 0 15px 0;
-            font-size: 18px;
-            font-weight: 800;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }}
-        
-        .tag-row {{
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }}
-        .tag-light {{
-            background: #e0f7fa;
-            color: #00838f;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-        }}
-        .tag-blue {{
-            background: #e3f2fd;
-            color: #1565c0;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-        }}
-        
-        .job-item {{
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }}
-        .company-logo {{
-            width: 40px;
-            height: 40px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-            background: #fafafa;
-        }}
-        .job-text h4 {{
-            margin: 0 0 4px 0;
-            font-size: 14px;
-            font-weight: 800;
-        }}
-        .job-text p {{
-            margin: 0;
-            font-size: 12px;
-            color: #777;
-        }}
-
-        .mentor-item {{
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 15px;
-        }}
-        .avatar {{
-            width: 36px;
-            height: 36px;
-            background: #ffe0b2;
-            border-radius: 50%;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }}
-        .mentor-text h4 {{
-            margin: 0 0 2px 0;
-            font-size: 14px;
-            font-weight: 700;
-        }}
-        .mentor-text p {{
-            margin: 0;
-            font-size: 12px;
-            color: #777;
-        }}
-
-        .scroll-down {{
-            width: 40px;
-            height: 40px;
-            background: #fff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            color: #888;
-            font-weight: bold;
-            cursor: pointer;
-            border: 1px solid #eaeaea;
         }}
 
         /* 대시보드 화면 스타일 */
@@ -304,18 +162,16 @@ st.markdown(
 )
 
 # =========================================================
-# [PAGE 1] 랜딩 페이지
+# [PAGE 1] 랜딩 페이지 (채용공고/멘토링 카드 제거 완료)
 # =========================================================
 if st.session_state.page == "landing":
   # 히어로 섹션 (이미지 + 타이틀 + 서브타이틀)
   st.markdown(
       f"""
-        <div class="landing-container">
-            <div class="hero-section">
-                <img src="{img_src}" alt="3D 계단 그래픽" class="hero-graphic">
-                <h1 class="hero-title">세상으로 나아가는<br>너의 첫 번째 계단</h1>
-                <p class="hero-subtitle">마이스터고 학생들의 꿈을 현실로 만드는 맞춤형 진로 로드맵 파트너</p>
-            </div>
+        <div class="hero-section">
+            <img src="{img_src}" alt="3D 계단 그래픽" class="hero-graphic">
+            <h1 class="hero-title">세상으로 나아가는<br>너의 첫 번째 계단</h1>
+            <p class="hero-subtitle">마이스터고 학생들의 꿈을 현실로 만드는 맞춤형 진로 로드맵 파트너</p>
         </div>
         """,
       unsafe_allow_html=True,
@@ -351,66 +207,7 @@ if st.session_state.page == "landing":
     ):
       navigate_to("dashboard")
 
-  st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
-
-  # 하단 위젯 영역 (채용공고, 멘토링 카드)
-  st.markdown(
-      """
-        <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
-            <div class="bottom-widgets">
-                <div class="widget-group">
-                    <div class="icon-pillar">
-                        <div>🚀</div>
-                        <div>⚙️</div>
-                    </div>
-                    <div class="info-card">
-                        <h3>오늘의 채용 공고 <span style="font-size:24px;">📄</span></h3>
-                        <div class="tag-row">
-                            <span class="tag-light">T-1828U</span>
-                            <span class="tag-blue">Meister Grad preferred</span>
-                        </div>
-                        <div class="job-item">
-                            <div class="company-logo">SAMSUNG</div>
-                            <div class="job-text">
-                                <h4>Full-time Meister Engineer</h4>
-                                <p>Meister Grad preferred • celiabis to...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="display: flex; align-items: flex-end; padding-bottom: 20px;">
-                    <div class="scroll-down">⌄</div>
-                </div>
-                
-                <div class="widget-group">
-                    <div class="info-card">
-                        <h3>선배 멘토링 <span style="font-size:24px;">💬</span></h3>
-                        <div class="mentor-item">
-                            <div class="avatar">👨‍💼</div>
-                            <div class="mentor-text">
-                                <h4>Kim Sun-bae, Samsung Senior</h4>
-                                <p>선배 mentor specialization</p>
-                            </div>
-                        </div>
-                        <div class="mentor-item" style="margin-bottom:0;">
-                            <div class="avatar">👨‍💻</div>
-                            <div class="mentor-text">
-                                <h4>Kim Sun-bae, Samsung Senior</h4>
-                                <p>AI mentor specialization</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="icon-pillar">
-                        <div>🌐</div>
-                        <div>🤝</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        """,
-      unsafe_allow_html=True,
-  )
+  st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
