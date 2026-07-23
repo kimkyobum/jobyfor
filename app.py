@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 글로벌 테크 웹사이트(Stripe, Toss) 스타일의 최적화된 풀 와이드 & 균형 잡힌 CSS 주입
+# 2. 토스 스타일의 넓은 여백과 앰비언트 그라데이션 CSS 주입
 st.markdown(
     """
 <style>
@@ -31,7 +31,7 @@ body, [class*="css"] {
     100% { transform: translateY(0px); }
 }
 
-/* 🌟 화면 전체를 아우르면서도 중간 공백을 없애는 최적의 앰비언트 그라데이션 배경 */
+/* 🌟 화면 전체를 아우르는 감각적인 앰비언트 그라데이션 배경 */
 .stApp {
     background: 
         radial-gradient(circle at 10% 10%, rgba(59, 178, 184, 0.1) 0px, transparent 45%),
@@ -42,23 +42,23 @@ body, [class*="css"] {
     color: #1e293b;
 }
 
-/* 🌟 중간 텅 빈 공백을 완벽히 해결하는 최적의 와이드 컨테이너 폭 (1200px) */
+/* 🌟 쾌적하고 넓은 와이드 컨테이너 폭 (1200px) 및 여유로운 패딩 */
 .block-container {
-    padding-top: 1.5rem;
-    padding-bottom: 10rem;
+    padding-top: 2rem;
+    padding-bottom: 14rem;
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 🌟 상단 둥근 알약 네비게이션 바 (완벽한 중앙 정렬 및 비율) */
+/* 🌟 상단 둥근 알약 네비게이션 바 */
 .speak-navbar-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .speak-navbar {
@@ -103,10 +103,10 @@ body, [class*="css"] {
     color: #475569;
 }
 
-/* 히어로 섹션 (좌우 균형감 있는 배치) */
+/* 히어로 섹션 (토스 스타일의 압도적인 여백) */
 .hero-section-left {
     text-align: left;
-    padding: 20px 0;
+    padding: 40px 0 20px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -121,15 +121,15 @@ body, [class*="css"] {
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     border: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
 
 .hero-title {
-    font-size: 52px;
+    font-size: 54px;
     font-weight: 800;
-    margin: 0 0 20px 0;
+    margin: 0 0 24px 0;
     line-height: 1.2;
     letter-spacing: -2px;
     color: #0f172a;
@@ -142,9 +142,9 @@ body, [class*="css"] {
 }
 
 .hero-subtitle {
-    font-size: 18px;
+    font-size: 19px;
     color: #64748b;
-    margin: 0 0 35px 0;
+    margin: 0 0 45px 0;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: -0.3px;
@@ -160,15 +160,15 @@ body, [class*="css"] {
 
 .hero-graphic {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.08));
 }
 
-/* 롱 스크롤 섹션 */
+/* 🌟 롱 스크롤 섹션 (토스 스타일의 넓고 쾌적한 상하 간격) */
 .scroll-section {
-    padding: 120px 0 40px 0;
+    padding: 180px 0 60px 0;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -176,33 +176,33 @@ body, [class*="css"] {
     font-size: 14px;
     font-weight: 700;
     color: #3bb2b8;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
 
 .section-heading {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     letter-spacing: -1px;
     line-height: 1.3;
 }
 
 .section-desc {
-    font-size: 18px;
+    font-size: 19px;
     color: #64748b;
     line-height: 1.6;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
-/* 모던 글래스 카드 스타일 */
+/* 모던 글래스 카드 스타일 (내부 여백 넉넉히 확장) */
 .modern-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
-    border-radius: 24px;
-    padding: 40px 36px;
+    border-radius: 28px;
+    padding: 48px 40px;
     border: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
     transition: all 0.3s ease;
@@ -219,17 +219,17 @@ body, [class*="css"] {
 }
 
 .modern-card h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
     color: #0f172a;
-    margin: 0 0 16px 0;
+    margin: 0 0 18px 0;
     letter-spacing: -0.5px;
 }
 
 .modern-card p {
-    font-size: 16px;
+    font-size: 17px;
     color: #64748b;
-    line-height: 1.7;
+    line-height: 1.75;
     margin: 0;
     word-break: keep-all;
 }
@@ -246,8 +246,8 @@ body, [class*="css"] {
 .bento-box {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 35px;
+    border-radius: 28px;
+    padding: 40px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.03);
     border: 1px solid rgba(226, 232, 240, 0.8);
 }
@@ -287,11 +287,11 @@ st.markdown(
 )
 
 # =========================================================
-# [PAGE 1] 메인 랜딩 페이지 (균형 잡힌 와이드 히어로 배치)
+# [PAGE 1] 메인 랜딩 페이지
 # =========================================================
 if st.session_state.page == "landing":
 
-  # --- [섹션 1] 첫 화면 (히어로: 1.1 대 0.9 비율로 공백 최소화) ---
+  # --- [섹션 1] 첫 화면 (히어로) ---
   hero_col1, hero_col2 = st.columns([1.1, 0.9], gap="large")
 
   with hero_col1:
@@ -313,8 +313,8 @@ if st.session_state.page == "landing":
         background: #0f172a !important;
         color: #ffffff !important;
         border: none !important;
-        padding: 16px 32px !important;
-        font-size: 16px !important;
+        padding: 18px 36px !important;
+        font-size: 17px !important;
         font-weight: 700 !important;
         border-radius: 50px !important;
         box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
@@ -403,7 +403,7 @@ if st.session_state.page == "landing":
   # --- [섹션 4] 만든 사람들 ---
   st.markdown(
       """
-<div class="scroll-section" style="padding-top: 140px;">
+<div class="scroll-section">
     <div class="section-tag">About Us</div>
     <div class="section-heading">만든 사람들</div>
     <div class="section-desc">학생들의 빛나는 도전과 가능성을 믿는 팀원들이 함께 만들었습니다.</div>
@@ -424,7 +424,7 @@ if st.session_state.page == "landing":
         unsafe_allow_html=True,
     )
 
-  st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
+  st.markdown("<div style='height: 100px;'></div>", unsafe_allow_html=True)
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
