@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 전체 그라데이션 배경, 세련된 카드 및 애니메이션 CSS 주입
+# 2. 양옆 빈 공간을 채워주는 앰비언트 그라데이션 및 모던 스타일 CSS 주입
 st.markdown(
     """
 <style>
@@ -31,20 +31,22 @@ body, [class*="css"] {
     100% { transform: translateY(0px); }
 }
 
-/* 전체 사이트 배경에 감각적인 소프트 그라데이션 적용 */
+/* 🌟 넓은 화면의 빈 공간을 풍성하게 채워주는 앰비언트 메시 그라데이션 배경 */
 .stApp {
     background: 
-        radial-gradient(circle at 10% 15%, rgba(59, 178, 184, 0.07) 0px, transparent 40%),
-        radial-gradient(circle at 90% 10%, rgba(126, 87, 194, 0.06) 0px, transparent 40%),
-        radial-gradient(circle at 50% 85%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+        radial-gradient(circle at 8% 12%, rgba(59, 178, 184, 0.12) 0px, transparent 38%),
+        radial-gradient(circle at 92% 18%, rgba(126, 87, 194, 0.1) 0px, transparent 38%),
+        radial-gradient(circle at 15% 75%, rgba(56, 189, 248, 0.08) 0px, transparent 42%),
+        radial-gradient(circle at 85% 82%, rgba(244, 114, 182, 0.06) 0px, transparent 40%),
         #ffffff !important;
+    background-attachment: fixed;
     color: #1e293b;
 }
 
 .block-container {
     padding-top: 2rem;
     padding-bottom: 10rem;
-    max-width: 1050px !important;
+    max-width: 1100px !important;
     margin: 0 auto;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -52,7 +54,7 @@ body, [class*="css"] {
 /* 히어로 섹션 */
 .hero-section {
     text-align: center;
-    padding: 30px 0 30px 0;
+    padding: 50px 0 30px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -61,8 +63,8 @@ body, [class*="css"] {
     align-items: center;
     gap: 6px;
     padding: 8px 18px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
     color: #475569;
     border-radius: 50px;
     font-size: 14px;
@@ -212,7 +214,7 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 헤더 컴팩트 배치 (구분선 제거 및 간격 좁힘)
+# 상단 헤더 컴팩트 배치 (구분선 없음, 자연스러운 여백)
 # =========================================================
 header_col1, header_col2, header_col3 = st.columns([1, 6, 1])
 
