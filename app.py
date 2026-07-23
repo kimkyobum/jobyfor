@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 토스 스타일 디자인 및 여유로운 여백, 페이드 인 애니메이션 CSS 주입
+# 2. 토스 스타일 디자인, 카드 높이 일치 및 여유로운 여백 CSS 주입
 st.markdown(
     """
 <style>
@@ -44,25 +44,16 @@ body, [class*="css"] {
 
 .block-container {
     padding-top: 3rem;
-    padding-bottom: 8rem;
+    padding-bottom: 10rem;
     max-width: 1050px !important;
     margin: 0 auto;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.brand-text {
-    font-size: 24px;
-    font-weight: 800;
-    background: linear-gradient(90deg, #0f172a, #334155);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -1px;
-}
-
-/* 히어로 섹션 여백 대폭 확장 */
+/* 히어로 섹션 여백 확장 */
 .hero-section {
     text-align: center;
-    padding: 60px 0 40px 0;
+    padding: 80px 0 50px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -76,7 +67,7 @@ body, [class*="css"] {
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     border: 1px solid #e2e8f0;
 }
 
@@ -98,7 +89,7 @@ body, [class*="css"] {
 .hero-subtitle {
     font-size: 20px;
     color: #64748b;
-    margin: 0 0 45px 0;
+    margin: 0 0 50px 0;
     font-weight: 400;
     letter-spacing: -0.5px;
 }
@@ -112,7 +103,7 @@ body, [class*="css"] {
     border-radius: 40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
     border: 1px solid #f1f5f9;
-    margin: 10px 0 50px 0;
+    margin: 10px 0 60px 0;
     animation: floatAnimation 4s ease-in-out infinite;
 }
 
@@ -122,10 +113,10 @@ body, [class*="css"] {
     object-fit: contain;
 }
 
-/* 롱 스크롤 섹션 간격을 아주 넓게(120px) 설정 */
+/* 롱 스크롤 섹션 틈새를 아주 넓게(160px) 설정 */
 .scroll-section {
-    padding: 120px 0 40px 0;
-    border-top: 1px solid #f1f5f9;
+    padding: 160px 0 60px 0;
+    border-top: 1px solid #f8fafc;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -151,17 +142,20 @@ body, [class*="css"] {
     font-size: 18px;
     color: #64748b;
     line-height: 1.6;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
-/* 스트림릿 네이티브 컨테이너(카드) 커스텀 스타일링 */
+/* 설명 블록(카드)들의 크기와 높이를 완벽하게 일치시키는 설정 */
 div[data-testid="stVerticalBlockBorderWrapper"] {
     background-color: #f8fafc !important;
     border-radius: 24px !important;
-    padding: 20px !important;
+    padding: 35px 30px !important;
     border: 1px solid #f1f5f9 !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.02) !important;
     transition: all 0.3s ease !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 div[data-testid="stVerticalBlockBorderWrapper"]:hover {
@@ -203,12 +197,10 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 네비게이션 바 (아이콘 제거 및 순수 MyStair 텍스트)
+# 상단 네비게이션 바 (버튼 테두리 없이 세련된 텍스트 로고 적용)
 # =========================================================
 nav_col1, nav_col2 = st.columns([8, 2])
 with nav_col1:
-  if st.button("LogoButton", key="logo_btn", use_container_width=False):
-    navigate_to("landing")
   st.markdown(
       """
 <style>
@@ -217,18 +209,20 @@ div[data-testid="column"] button[key="logo_btn"] {
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    background: linear-gradient(90deg, #0f172a, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
     text-align: left !important;
 }
-div[data-testid="column"] button[key="logo_btn"]::after {
-    content: "";
-}
 </style>
-<div style="padding: 4px 0;">
-    <span class="brand-text">MyStair</span>
-</div>
 """,
       unsafe_allow_html=True,
   )
+  if st.button("MyStair", key="logo_btn"):
+    navigate_to("landing")
 
 with nav_col2:
   st.markdown(
@@ -257,7 +251,7 @@ div[data-testid="column"] button[key="login_btn"]:hover {
     st.toast("로그인 창이 열립니다.")
 
 st.markdown(
-    "<hr style='margin: 15px 0 30px 0; border: none; border-top: 1px solid"
+    "<hr style='margin: 15px 0 40px 0; border: none; border-top: 1px solid"
     " #f1f5f9;'>",
     unsafe_allow_html=True,
 )
@@ -299,7 +293,7 @@ if st.session_state.page == "landing":
       st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
 
   # CTA 버튼 여백 포함 배치
-  st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+  st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
   col_c1, col_c2, col_c3 = st.columns([2, 1.6, 2])
   with col_c2:
     st.markdown(
@@ -330,7 +324,7 @@ div.stButton > button[kind="primary"]:hover {
     ):
       navigate_to("dashboard")
 
-  # --- [섹션 2] 핵심 기능 소개 (충분한 간격 확보) ---
+  # --- [섹션 2] 핵심 기능 소개 (높이 일치형 카드 블록) ---
   st.markdown(
       """
 <div class="scroll-section">
@@ -347,22 +341,25 @@ div.stButton > button[kind="primary"]:hover {
     with st.container(border=True):
       st.markdown("### 🎯 맞춤형 진로 로드맵")
       st.markdown(
-          "전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고 관리합니다."
+          "전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고"
+          " 관리합니다."
       )
   with f_col2:
     with st.container(border=True):
       st.markdown("### 📅 실습 및 경험 기록")
       st.markdown(
-          "학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을 구축합니다."
+          "학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을"
+          " 구축합니다."
       )
   with f_col3:
     with st.container(border=True):
       st.markdown("### ✨ AI STAR 자소서 변환")
       st.markdown(
-          "축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다."
+          "축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에"
+          " 완성합니다."
       )
 
-  # --- [섹션 3] 만든 사람들 (팀 소개) ---
+  # --- [섹션 3] 만든 사람들 (높이 일치형 팀 소개 블록) ---
   st.markdown(
       """
 <div class="scroll-section">
@@ -379,17 +376,22 @@ div.stButton > button[kind="primary"]:hover {
     with st.container(border=True):
       st.markdown("### 💡 왜 MyStair를 만들었나요?")
       st.markdown(
-          "일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가 되도록 돕고 싶었습니다."
+          "일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술"
+          " 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서"
+          " 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가"
+          " 되도록 돕고 싶었습니다."
       )
   with t_col2:
     with st.container(border=True):
       st.markdown("### 🚀 우리의 목표와 비전")
       st.markdown(
-          "단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고 혁신적인 첫 번째 계단이 되는 것입니다."
+          "단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을"
+          " 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고"
+          " 혁신적인 첫 번째 계단이 되는 것입니다."
       )
 
   # 하단 여백 추가
-  st.markdown("<div style='height: 60px;'></div>", unsafe_allow_html=True)
+  st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
