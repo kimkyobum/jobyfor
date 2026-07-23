@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 상단바와 첫 화면 사이 간격을 더욱 넓힌 최적화된 CSS 주입
+# 2. 상단바와 첫 화면 사이 간격을 더 넓힌 최적화된 CSS 주입
 st.markdown(
     """
 <style>
@@ -53,12 +53,12 @@ body, [class*="css"] {
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 🌟 상단 알약 네비게이션 바 (하단 간격을 더 넉넉하게 확장) */
+/* 🌟 상단 알약 네비게이션 바 (상단바와 첫 화면 간격 추가 확장) */
 .speak-navbar-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 80px;
+    margin-bottom: 110px;
 }
 
 .speak-navbar {
@@ -106,7 +106,7 @@ body, [class*="css"] {
 /* 히어로 섹션 */
 .hero-section-left {
     text-align: left;
-    padding: 20px 0 15px 0;
+    padding: 10px 0 15px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
