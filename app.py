@@ -10,25 +10,20 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 토스 스타일 디자인, 카드 높이 일치 및 여유로운 여백 CSS 주입
+# 2. 트렌디한 SUIT 글꼴, 완벽한 높이 맞춤(Grid), 감각적인 여백 CSS 주입
 st.markdown(
     """
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+/* 부드럽고 가독성 높은 최신 웹 폰트 SUIT 적용 */
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
 
 body, [class*="css"] {
-    font-family: 'Pretendard', -apple-system, sans-serif !important;
+    font-family: 'SUIT', -apple-system, sans-serif !important;
 }
 
 @keyframes smoothFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatAnimation {
@@ -50,7 +45,7 @@ body, [class*="css"] {
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 히어로 섹션 여백 확장 */
+/* 히어로 섹션 */
 .hero-section {
     text-align: center;
     padding: 80px 0 50px 0;
@@ -75,8 +70,8 @@ body, [class*="css"] {
     font-size: 60px;
     font-weight: 800;
     margin: 0 0 24px 0;
-    line-height: 1.18;
-    letter-spacing: -2.5px;
+    line-height: 1.25;
+    letter-spacing: -2px;
     color: #0f172a;
 }
 
@@ -113,9 +108,9 @@ body, [class*="css"] {
     object-fit: contain;
 }
 
-/* 롱 스크롤 섹션 틈새를 아주 넓게(160px) 설정 */
+/* 롱 스크롤 섹션 여백 */
 .scroll-section {
-    padding: 160px 0 60px 0;
+    padding: 140px 0 40px 0;
     border-top: 1px solid #f8fafc;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -130,41 +125,73 @@ body, [class*="css"] {
 }
 
 .section-heading {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 800;
     color: #0f172a;
     margin-bottom: 16px;
-    letter-spacing: -1.2px;
-    line-height: 1.25;
+    letter-spacing: -1px;
+    line-height: 1.3;
 }
 
 .section-desc {
     font-size: 18px;
     color: #64748b;
     line-height: 1.6;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
-/* 설명 블록(카드)들의 크기와 높이를 완벽하게 일치시키는 설정 */
-div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #f8fafc !important;
-    border-radius: 24px !important;
-    padding: 35px 30px !important;
-    border: 1px solid #f1f5f9 !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02) !important;
-    transition: all 0.3s ease !important;
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
+/* ---------------------------------------------------
+   카드 높이 완벽 일치를 위한 커스텀 CSS Grid 시스템 
+--------------------------------------------------- */
+.card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch; /* 높이 강제 일치 */
 }
 
-div[data-testid="stVerticalBlockBorderWrapper"]:hover {
-    transform: translateY(-6px) !important;
-    background-color: #ffffff !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06) !important;
-    border-color: #e2e8f0 !important;
+.card-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    align-items: stretch; /* 높이 강제 일치 */
 }
 
+.custom-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px 32px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.custom-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    border-color: #cbd5e1;
+}
+
+.custom-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.5px;
+}
+
+.custom-card p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.7;
+    margin: 0;
+    word-break: keep-all;
+}
+
+/* 대시보드 */
 .app-container {
     width: 100%;
     margin: 0 auto;
@@ -173,7 +200,6 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     flex-direction: column;
     gap: 30px;
 }
-
 .bento-box {
     background: #ffffff;
     border-radius: 24px;
@@ -197,7 +223,7 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 네비게이션 바 (버튼 테두리 없이 세련된 텍스트 로고 적용)
+# 상단 네비게이션 바
 # =========================================================
 nav_col1, nav_col2 = st.columns([8, 2])
 with nav_col1:
@@ -251,8 +277,7 @@ div[data-testid="column"] button[key="login_btn"]:hover {
     st.toast("로그인 창이 열립니다.")
 
 st.markdown(
-    "<hr style='margin: 15px 0 40px 0; border: none; border-top: 1px solid"
-    " #f1f5f9;'>",
+    "<hr style='margin: 15px 0 40px 0; border: none; border-top: 1px solid #f1f5f9;'>",
     unsafe_allow_html=True,
 )
 
@@ -292,7 +317,7 @@ if st.session_state.page == "landing":
     else:
       st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
 
-  # CTA 버튼 여백 포함 배치
+  # CTA 버튼
   st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
   col_c1, col_c2, col_c3 = st.columns([2, 1.6, 2])
   with col_c2:
@@ -319,79 +344,59 @@ div.stButton > button[kind="primary"]:hover {
 """,
         unsafe_allow_html=True,
     )
-    if st.button(
-        "나의 진로 탐색 시작하기", type="primary", use_container_width=True
-    ):
+    if st.button("나의 진로 탐색 시작하기", type="primary", use_container_width=True):
       navigate_to("dashboard")
 
-  # --- [섹션 2] 핵심 기능 소개 (높이 일치형 카드 블록) ---
+  # --- [섹션 2] 핵심 기능 소개 (높이 완벽 일치 커스텀 HTML 그리드) ---
   st.markdown(
       """
 <div class="scroll-section">
     <div class="section-tag">Core Features</div>
     <div class="section-heading">성장을 기록하고,<br>커리어를 완성하세요</div>
     <div class="section-desc">마이스터고 생활에 꼭 필요한 기능들만 엄선해 담았습니다.</div>
+    
+    <div class="card-grid-3">
+        <div class="custom-card">
+            <h3>🎯 맞춤형 진로 로드맵</h3>
+            <p>전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고 관리합니다.</p>
+        </div>
+        <div class="custom-card">
+            <h3>📅 실습 및 경험 기록</h3>
+            <p>학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을 구축합니다.</p>
+        </div>
+        <div class="custom-card">
+            <h3>✨ AI STAR 자소서 변환</h3>
+            <p>축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다.</p>
+        </div>
+    </div>
 </div>
 """,
       unsafe_allow_html=True,
   )
 
-  f_col1, f_col2, f_col3 = st.columns(3, gap="large")
-  with f_col1:
-    with st.container(border=True):
-      st.markdown("### 🎯 맞춤형 진로 로드맵")
-      st.markdown(
-          "전공과 역량에 딱 맞춘 단계별 성장 경로를 지능적으로 설계하고"
-          " 관리합니다."
-      )
-  with f_col2:
-    with st.container(border=True):
-      st.markdown("### 📅 실습 및 경험 기록")
-      st.markdown(
-          "학교 생활과 현장 실습 활동을 스마트하게 기록하여 나만의 커리어 자산을"
-          " 구축합니다."
-      )
-  with f_col3:
-    with st.container(border=True):
-      st.markdown("### ✨ AI STAR 자소서 변환")
-      st.markdown(
-          "축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에"
-          " 완성합니다."
-      )
-
-  # --- [섹션 3] 만든 사람들 (높이 일치형 팀 소개 블록) ---
+  # --- [섹션 3] 만든 사람들 (높이 완벽 일치 커스텀 HTML 그리드) ---
   st.markdown(
       """
-<div class="scroll-section">
+<div class="scroll-section" style="padding-top: 120px;">
     <div class="section-tag">About Us</div>
     <div class="section-heading">만든 사람들</div>
     <div class="section-desc">학생들의 빛나는 도전과 가능성을 믿는 팀원들이 함께 만들었습니다.</div>
+    
+    <div class="card-grid-2">
+        <div class="custom-card">
+            <h3>💡 왜 MyStair를 만들었나요?</h3>
+            <p>일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가 되도록 돕고 싶었습니다.</p>
+        </div>
+        <div class="custom-card">
+            <h3>🚀 우리의 목표와 비전</h3>
+            <p>단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고 혁신적인 첫 번째 계단이 되는 것입니다.</p>
+        </div>
+    </div>
 </div>
+<div style='height: 80px;'></div>
 """,
       unsafe_allow_html=True,
   )
-
-  t_col1, t_col2 = st.columns(2, gap="large")
-  with t_col1:
-    with st.container(border=True):
-      st.markdown("### 💡 왜 MyStair를 만들었나요?")
-      st.markdown(
-          "일반 인문계 고등학교와는 다른 마이스터고만의 특수한 실습 경험과 기술"
-          " 역량이 입사 지원서나 포트폴리오에 온전히 녹아들지 못하는 안타까움에서"
-          " 출발했습니다. 학생들이 흘린 땀방울이 가장 가치 있는 취업 무기가"
-          " 되도록 돕고 싶었습니다."
-      )
-  with t_col2:
-    with st.container(border=True):
-      st.markdown("### 🚀 우리의 목표와 비전")
-      st.markdown(
-          "단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을"
-          " 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고"
-          " 혁신적인 첫 번째 계단이 되는 것입니다."
-      )
-
-  # 하단 여백 추가
-  st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
@@ -415,7 +420,7 @@ elif st.session_state.page == "dashboard":
     st.markdown(
         """
 <div class="bento-box">
-    <h3>📝 오늘의 과제</h3>
+    <h3 style="margin: 0 0 15px 0;">📝 오늘의 과제</h3>
 </div>
 """,
         unsafe_allow_html=True,
@@ -428,7 +433,7 @@ elif st.session_state.page == "dashboard":
     st.markdown(
         """
 <div class="bento-box">
-    <h3>📅 경험 캘린더 & AI 자소서</h3>
+    <h3 style="margin: 0 0 15px 0;">📅 경험 캘린더 & AI 자소서</h3>
     <div style="background:#f8fafc; padding:20px; border-radius:16px; margin-bottom: 20px; border: 1px solid #e2e8f0; color: #334155;">
         <b>[2026년 7월]</b> 실습 캘린더 데이터 적재 완료
     </div>
@@ -437,11 +442,7 @@ elif st.session_state.page == "dashboard":
         unsafe_allow_html=True,
     )
 
-    if st.button(
-        "✨ AI STAR 자소서 자동 추출하기",
-        type="primary",
-        use_container_width=True,
-    ):
+    if st.button("✨ AI STAR 자소서 자동 추출하기", type="primary", use_container_width=True):
       with st.spinner("AI가 캘린더 데이터를 심층 분석 중입니다..."):
         time.sleep(1)
       st.success("자소서 추출 완료!")
