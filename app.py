@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 토스 스타일 디자인 및 부드러운 페이드 인 애니메이션 CSS 주입
+# 2. 토스 스타일 디자인 및 여유로운 여백, 페이드 인 애니메이션 CSS 주입
 st.markdown(
     """
 <style>
@@ -43,9 +43,9 @@ body, [class*="css"] {
 }
 
 .block-container {
-    padding-top: 2rem;
-    padding-bottom: 6rem;
-    max-width: 1100px !important;
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+    max-width: 1050px !important;
     margin: 0 auto;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -59,9 +59,10 @@ body, [class*="css"] {
     letter-spacing: -1px;
 }
 
+/* 히어로 섹션 여백 대폭 확장 */
 .hero-section {
     text-align: center;
-    padding: 50px 0 30px 0;
+    padding: 60px 0 40px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -69,20 +70,20 @@ body, [class*="css"] {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 16px;
+    padding: 8px 18px;
     background: #f8fafc;
     color: #475569;
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     border: 1px solid #e2e8f0;
 }
 
 .hero-title {
-    font-size: 58px;
+    font-size: 60px;
     font-weight: 800;
-    margin: 0 0 20px 0;
+    margin: 0 0 24px 0;
     line-height: 1.18;
     letter-spacing: -2.5px;
     color: #0f172a;
@@ -97,7 +98,7 @@ body, [class*="css"] {
 .hero-subtitle {
     font-size: 20px;
     color: #64748b;
-    margin: 0 0 35px 0;
+    margin: 0 0 45px 0;
     font-weight: 400;
     letter-spacing: -0.5px;
 }
@@ -106,12 +107,12 @@ body, [class*="css"] {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 35px 50px;
+    padding: 40px 60px;
     background: radial-gradient(circle at 50% 20%, rgba(59, 178, 184, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
     border-radius: 40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
     border: 1px solid #f1f5f9;
-    margin: 20px 0 40px 0;
+    margin: 10px 0 50px 0;
     animation: floatAnimation 4s ease-in-out infinite;
 }
 
@@ -121,9 +122,10 @@ body, [class*="css"] {
     object-fit: contain;
 }
 
+/* 롱 스크롤 섹션 간격을 아주 넓게(120px) 설정 */
 .scroll-section {
-    padding: 80px 0;
-    border-top: 1px solid #f8fafc;
+    padding: 120px 0 40px 0;
+    border-top: 1px solid #f1f5f9;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -131,13 +133,13 @@ body, [class*="css"] {
     font-size: 14px;
     font-weight: 700;
     color: #3bb2b8;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .section-heading {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 800;
     color: #0f172a;
     margin-bottom: 16px;
@@ -146,10 +148,27 @@ body, [class*="css"] {
 }
 
 .section-desc {
-    font-size: 17px;
+    font-size: 18px;
     color: #64748b;
     line-height: 1.6;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+}
+
+/* 스트림릿 네이티브 컨테이너(카드) 커스텀 스타일링 */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #f8fafc !important;
+    border-radius: 24px !important;
+    padding: 20px !important;
+    border: 1px solid #f1f5f9 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02) !important;
+    transition: all 0.3s ease !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    transform: translateY(-6px) !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06) !important;
+    border-color: #e2e8f0 !important;
 }
 
 .app-container {
@@ -184,7 +203,7 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 네비게이션 바 (아이콘 제거 및 순수 MyStair 텍스트 적용)
+# 상단 네비게이션 바 (아이콘 제거 및 순수 MyStair 텍스트)
 # =========================================================
 nav_col1, nav_col2 = st.columns([8, 2])
 with nav_col1:
@@ -219,7 +238,7 @@ div[data-testid="column"] button[key="login_btn"] {
     background: #f8fafc !important;
     color: #0f172a !important;
     border: 1px solid #e2e8f0 !important;
-    padding: 6px 16px !important;
+    padding: 8px 18px !important;
     font-size: 14px !important;
     font-weight: 600 !important;
     border-radius: 20px !important;
@@ -238,7 +257,7 @@ div[data-testid="column"] button[key="login_btn"]:hover {
     st.toast("로그인 창이 열립니다.")
 
 st.markdown(
-    "<hr style='margin: 10px 0 20px 0; border: none; border-top: 1px solid"
+    "<hr style='margin: 15px 0 30px 0; border: none; border-top: 1px solid"
     " #f1f5f9;'>",
     unsafe_allow_html=True,
 )
@@ -279,8 +298,9 @@ if st.session_state.page == "landing":
     else:
       st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
 
-  # CTA 버튼
-  col_c1, col_c2, col_c3 = st.columns([2, 1.5, 2])
+  # CTA 버튼 여백 포함 배치
+  st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+  col_c1, col_c2, col_c3 = st.columns([2, 1.6, 2])
   with col_c2:
     st.markdown(
         """
@@ -289,7 +309,7 @@ div.stButton > button[kind="primary"] {
     background: #0f172a !important;
     color: #ffffff !important;
     border: none !important;
-    padding: 16px 32px !important;
+    padding: 18px 36px !important;
     font-size: 17px !important;
     font-weight: 700 !important;
     border-radius: 50px !important;
@@ -310,19 +330,19 @@ div.stButton > button[kind="primary"]:hover {
     ):
       navigate_to("dashboard")
 
-  # --- [섹션 2] 아래로 스크롤하면 나오는 '핵심 기능 소개' (스트림릿 네이티브 컴포넌트 활용) ---
+  # --- [섹션 2] 핵심 기능 소개 (충분한 간격 확보) ---
   st.markdown(
       """
 <div class="scroll-section">
     <div class="section-tag">Core Features</div>
     <div class="section-heading">성장을 기록하고,<br>커리어를 완성하세요</div>
-    <div class="section-desc">마이스터고 생활에 꼭 필요한 기능들만 담았습니다.</div>
+    <div class="section-desc">마이스터고 생활에 꼭 필요한 기능들만 엄선해 담았습니다.</div>
 </div>
 """,
       unsafe_allow_html=True,
   )
 
-  f_col1, f_col2, f_col3 = st.columns(3)
+  f_col1, f_col2, f_col3 = st.columns(3, gap="large")
   with f_col1:
     with st.container(border=True):
       st.markdown("### 🎯 맞춤형 진로 로드맵")
@@ -342,10 +362,10 @@ div.stButton > button[kind="primary"]:hover {
           "축적된 활동 데이터를 바탕으로 기업 맞춤형 STAR 자기소개서를 1초 만에 완성합니다."
       )
 
-  # --- [섹션 3] 아래로 스크롤하면 나오는 '만든 사람들 (팀 소개)' (스트림릿 네이티브 컴포넌트 활용) ---
+  # --- [섹션 3] 만든 사람들 (팀 소개) ---
   st.markdown(
       """
-<div class="scroll-section" style="margin-top: 40px;">
+<div class="scroll-section">
     <div class="section-tag">About Us</div>
     <div class="section-heading">만든 사람들</div>
     <div class="section-desc">학생들의 빛나는 도전과 가능성을 믿는 팀원들이 함께 만들었습니다.</div>
@@ -354,7 +374,7 @@ div.stButton > button[kind="primary"]:hover {
       unsafe_allow_html=True,
   )
 
-  t_col1, t_col2 = st.columns(2)
+  t_col1, t_col2 = st.columns(2, gap="large")
   with t_col1:
     with st.container(border=True):
       st.markdown("### 💡 왜 MyStair를 만들었나요?")
@@ -367,6 +387,9 @@ div.stButton > button[kind="primary"]:hover {
       st.markdown(
           "단순한 자소서 작성 툴을 넘어, 마이스터고 학생들이 자신만의 확신을 가지고 세상이라는 더 큰 무대로 나아갈 수 있는 가장 믿음직하고 혁신적인 첫 번째 계단이 되는 것입니다."
       )
+
+  # 하단 여백 추가
+  st.markdown("<div style='height: 60px;'></div>", unsafe_allow_html=True)
 
 # =========================================================
 # [PAGE 2] 앱 대시보드 페이지
@@ -384,7 +407,7 @@ elif st.session_state.page == "dashboard":
       unsafe_allow_html=True,
   )
 
-  col_d1, col_d2 = st.columns([1, 1.5])
+  col_d1, col_d2 = st.columns([1, 1.5], gap="large")
 
   with col_d1:
     st.markdown(
