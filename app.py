@@ -1,4 +1,3 @@
-import base64
 import os
 import streamlit as st
 
@@ -9,82 +8,66 @@ st.set_page_config(
     layout="wide",
 )
 
-
-# 이미지 안전 로딩 함수
-def get_img_base64(file_path):
-  if os.path.exists(file_path):
-    with open(file_path, "rb") as f:
-      return base64.b64encode(f.read()).decode("utf-8")
-  return ""
-
-
-img_b64 = get_img_base64("main_image.png")
-img_src = (
-    f"data:image/png;base64,{img_b64}"
-    if img_b64
-    else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
-)
-
-# 2. 다이내믹 애니메이션 및 세련된 토스 스타일 라이트톤 CSS 주입
+# 2. 페이드 인 애니메이션 효과 및 세련된 토스 스타일 라이트톤 디자인 CSS 주입 (일반 문자열 처리로 중괄호 에러 원천 차단)
 st.markdown(
-    f"""
+    """
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         
-        body, [class*="css"] {{
+        body, [class*="css"] {
             font-family: 'Pretendard', -apple-system, sans-serif !important;
-        }}
+        }
 
         /* 접속 시 화면 전체가 서서히 나타나는 페이드 인 애니메이션 */
-        @keyframes fadeIn {{
-            from {{
+        @keyframes fadeIn {
+            from {
                 opacity: 0;
                 transform: translateY(12px);
-            }}
-            to {{
+            }
+            to {
                 opacity: 1;
                 transform: translateY(0);
-            }}
-        }}
+            }
+        }
 
         /* 3D 계단 이미지가 부드럽게 위아래로 떠 움직이는 플로팅 애니메이션 */
-        @keyframes floatAnimation {{
-            0% {{
+        @keyframes floatAnimation {
+            0% {
                 transform: translateY(0px);
-            }}
-            50% {{
+            }
+            50% {
                 transform: translateY(-10px);
-            }}
-            100% {{
+            }
+            100% {
                 transform: translateY(0px);
-            }}
-        }}
+            }
+        }
 
-        .stApp {{
+        .stApp {
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             color: #1e293b;
             animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }}
+        }
 
-        .block-container {{
+        .block-container {
             padding-top: 1.5rem;
             padding-bottom: 5rem;
             max-width: 100% !important;
             padding-left: 6rem !important;
             padding-right: 6rem !important;
-        }}
+        }
 
         /* 히어로 섹션 */
-        .hero-section {{
+        .hero-section {
             text-align: center;
             margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }}
+        }
         
-        .hero-graphic {{
+        .hero-graphic {
             width: 360px;
             height: auto;
             margin-bottom: 30px;
@@ -93,17 +76,16 @@ st.markdown(
             border-radius: 28px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
             border: 1px solid #f1f5f9;
-            /* 플로팅 애니메이션 적용 */
             animation: floatAnimation 4s ease-in-out infinite;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }}
-        .hero-graphic:hover {{
+        }
+        .hero-graphic:hover {
             animation-play-state: paused;
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px rgba(62, 178, 184, 0.15);
-        }}
+        }
 
-        .hero-title {{
+        .hero-title {
             font-size: 58px;
             font-weight: 800;
             margin: 0 0 20px 0;
@@ -111,28 +93,28 @@ st.markdown(
             letter-spacing: -2px;
             color: #0f172a;
             text-align: center;
-        }}
+        }
         
-        .hero-subtitle {{
+        .hero-subtitle {
             font-size: 20px;
             color: #64748b;
             margin: 0 0 45px 0;
             font-weight: 400;
             text-align: center;
             letter-spacing: -0.5px;
-        }}
+        }
 
-        /* 기능 카드 섹션 (인터랙션 강화) */
-        .feature-container {{
+        /* 기능 카드 섹션 */
+        .feature-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 60px;
             width: 100%;
             animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }}
+        }
 
-        .feature-card {{
+        .feature-card {
             background: #ffffff;
             border-radius: 24px;
             padding: 40px 32px;
@@ -141,15 +123,15 @@ st.markdown(
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-align: left;
             cursor: pointer;
-        }}
+        }
 
-        .feature-card:hover {{
+        .feature-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(62, 178, 184, 0.12);
             border-color: #3bb2b8;
-        }}
+        }
 
-        .feature-icon {{
+        .feature-icon {
             font-size: 30px;
             margin-bottom: 20px;
             background: #f1f5f9;
@@ -162,28 +144,28 @@ st.markdown(
             transition: transform 0.3s ease, background 0.3s ease;
         }
 
-        .feature-card:hover .feature-icon {{
+        .feature-card:hover .feature-icon {
             transform: scale(1.1) rotate(5deg);
             background: #e0f7fa;
-        }}
+        }
 
-        .feature-card h3 {{
+        .feature-card h3 {
             font-size: 20px;
             font-weight: 700;
             color: #0f172a;
             margin: 0 0 12px 0;
             letter-spacing: -0.5px;
-        }}
+        }
 
-        .feature-card p {{
+        .feature-card p {
             font-size: 15px;
             color: #64748b;
             margin: 0;
             line-height: 1.6;
-        }}
+        }
 
         /* 대시보드 화면 스타일 */
-        .app-container {{
+        .app-container {
             width: 100%;
             margin: 0 auto;
             padding: 20px 0;
@@ -191,24 +173,24 @@ st.markdown(
             flex-direction: column;
             gap: 30px;
             animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }}
-        .bento-box {{
+        }
+        .bento-box {
             background: #ffffff;
             border-radius: 24px;
             padding: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
-        }}
-        .bento-box:hover {{
+        }
+        .bento-box:hover {
             box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-        }}
-        .bento-box h3 {{
+        }
+        .bento-box h3 {
             margin-top: 0;
             font-size: 22px;
             font-weight: 700;
             color: #0f172a;
-        }}
+        }
     </style>
     """,
     unsafe_allow_html=True,
@@ -267,17 +249,27 @@ st.markdown(
 # [PAGE 1] 랜딩 페이지
 # =========================================================
 if st.session_state.page == "landing":
-  # 히어로 섹션 (플로팅 애니메이션 적용 이미지)
+  # 히어로 섹션
   st.markdown(
-      f"""
+      """
         <div class="hero-section">
-            <img src="{img_src}" alt="3D 계단 그래픽" class="hero-graphic">
             <h1 class="hero-title">세상으로 나아가는<br>너의 첫 번째 계단</h1>
             <p class="hero-subtitle">마이스터고 학생들의 꿈을 현실로 만드는 혁신적인 진로 로드맵 파트너</p>
         </div>
         """,
       unsafe_allow_html=True,
   )
+
+  # 3D 계단 이미지 출력 (플로팅 애니메이션 스타일 적용)
+  img_col1, img_col2, img_col3 = st.columns([1, 1.2, 1])
+  with img_col2:
+    if os.path.exists("main_image.png"):
+      # 커스텀 CSS 클래스가 적용되도록 감싸기
+      st.markdown('<div style="text-align: center;">', unsafe_allow_html=True)
+      st.image("main_image.png", use_container_width=True)
+      st.markdown("</div>", unsafe_allow_html=True)
+    else:
+      st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
 
   # 중앙 화사한 그라데이션 CTA 버튼
   col_c1, col_c2, col_c3 = st.columns([2, 1.5, 2])
@@ -313,7 +305,7 @@ if st.session_state.page == "landing":
 
   st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
 
-  # 하단 기능 소개 카드 3가지 (입체 호버 모션 적용)
+  # 하단 기능 소개 카드 3가지
   st.markdown(
       """
         <div class="feature-container">
