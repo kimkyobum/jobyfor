@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 밝고 화사한 토스 스타일 라이트톤 CSS 주입 (양옆 꽉 채우기)
+# 2. 토스 스타일의 밝고 꽉 찬 라이트톤 디자인 CSS 주입
 st.markdown(
     f"""
     <style>
@@ -35,19 +35,17 @@ st.markdown(
             font-family: 'Pretendard', -apple-system, sans-serif !important;
         }}
 
-        /* 화면 전체를 밝고 화사하게 감싸는 배경 */
         .stApp {{
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             color: #1e293b;
         }}
 
-        /* 양옆 여백을 줄이고 화면을 꽉 채우도록 설정 */
         .block-container {{
-            padding-top: 2rem;
-            padding-bottom: 4rem;
+            padding-top: 1.5rem;
+            padding-bottom: 5rem;
             max-width: 100% !important;
-            padding-left: 5rem !important;
-            padding-right: 5rem !important;
+            padding-left: 6rem !important;
+            padding-right: 6rem !important;
         }}
 
         /* 히어로 섹션 */
@@ -59,7 +57,6 @@ st.markdown(
             align-items: center;
         }}
         
-        /* 3D 계단 이미지 */
         .hero-graphic {{
             width: 360px;
             height: auto;
@@ -75,7 +72,6 @@ st.markdown(
             transform: translateY(-6px);
         }}
 
-        /* 타이틀 타이포그래피 */
         .hero-title {{
             font-size: 58px;
             font-weight: 800;
@@ -95,12 +91,39 @@ st.markdown(
             letter-spacing: -0.5px;
         }}
 
-        /* 화사한 기능 카드 섹션 (꽉 찬 배치) */
+        /* 통계/지표 섹션 (텅 빈 느낌 해소) */
+        .stats-container {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 60px 0 40px 0;
+            width: 100%;
+        }}
+        .stat-card {{
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }}
+        .stat-num {{
+            font-size: 32px;
+            font-weight: 800;
+            color: #3bb2b8;
+            margin-bottom: 8px;
+        }}
+        .stat-desc {{
+            font-size: 15px;
+            color: #64748b;
+            font-weight: 500;
+        }}
+
+        /* 기능 카드 섹션 */
         .feature-container {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-top: 70px;
+            margin-top: 40px;
             width: 100%;
         }}
 
@@ -116,7 +139,7 @@ st.markdown(
 
         .feature-card:hover {{
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.08);
+            box-shadow: 0 20px 40px rgba(62, 178, 184, 0.1);
             border-color: #cbd5e1;
         }}
 
@@ -185,34 +208,11 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 헤더 (화사하고 예쁜 로그인 버튼 장착)
+# 상단 헤더 (불필요한 로고 제거 후 깔끔하게 로그인 버튼만 우측 배치)
 # =========================================================
-header_col1, header_col2 = st.columns([10, 1])
-
-with header_col1:
-  if st.button("mystair", key="logo_text_btn", use_container_width=False):
-    navigate_to("landing")
-  st.markdown(
-      """
-        <style>
-        div[data-testid="column"] button[key="logo_text_btn"] {
-            background: transparent !important;
-            border: none !important;
-            font-size: 28px !important;
-            font-weight: 800 !important;
-            background: linear-gradient(90deg, #3bb2b8, #7e57c2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding: 0 !important;
-            letter-spacing: -1px;
-        }
-        </style>
-        """,
-      unsafe_allow_html=True,
-  )
+header_col1, header_col2 = st.columns([11, 1])
 
 with header_col2:
-  # 밝고 화사한 토스 스타일 로그인 버튼 CSS
   st.markdown(
       """
         <style>
@@ -240,7 +240,7 @@ with header_col2:
     st.toast("로그인 창이 열립니다.")
 
 st.markdown(
-    "<hr style='margin: 10px 0 40px 0; border: none; border-top: 1px solid"
+    "<hr style='margin: 5px 0 30px 0; border: none; border-top: 1px solid"
     " #e2e8f0;'>",
     unsafe_allow_html=True,
 )
@@ -293,9 +293,30 @@ if st.session_state.page == "landing":
     ):
       navigate_to("dashboard")
 
-  st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
+  st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
 
-  # 하단 기능 소개 카드 3가지 (화면 전체 너비에 맞춰 꽉 차게 배치)
+  # 통계 지표 섹션 (화면을 풍성하게 채워주는 요소)
+  st.markdown(
+      """
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-num">98%</div>
+                <div class="stat-desc">맞춤형 진로 로드맵 매칭 만족도</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">1초 만에</div>
+                <div class="stat-desc">실습 기록 기반 STAR 자소서 완성</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">100%</div>
+                <div class="stat-desc">마이스터고 전공 역량 완벽 연동</div>
+            </div>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
+
+  # 하단 기능 소개 카드 3가지
   st.markdown(
       """
         <div class="feature-container">
@@ -360,7 +381,7 @@ elif st.session_state.page == "dashboard":
             </div>
         </div>
         """,
-        unsafe_allow_html=True,
+      unsafe_allow_html=True,
     )
 
     if st.button(
