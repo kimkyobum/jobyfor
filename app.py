@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 페이드 인 애니메이션 효과 및 세련된 라이트톤 디자인 CSS 주입
+# 2. 다이내믹 애니메이션 및 세련된 토스 스타일 라이트톤 CSS 주입
 st.markdown(
     f"""
     <style>
@@ -35,15 +35,28 @@ st.markdown(
             font-family: 'Pretendard', -apple-system, sans-serif !important;
         }}
 
-        /* 접속 시 화면 전체가 서서히 나타나는 페이드 인 애니메이션 효과 */
+        /* 접속 시 화면 전체가 서서히 나타나는 페이드 인 애니메이션 */
         @keyframes fadeIn {{
             from {{
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(12px);
             }}
             to {{
                 opacity: 1;
                 transform: translateY(0);
+            }}
+        }}
+
+        /* 3D 계단 이미지가 부드럽게 위아래로 떠 움직이는 플로팅 애니메이션 */
+        @keyframes floatAnimation {{
+            0% {{
+                transform: translateY(0px);
+            }}
+            50% {{
+                transform: translateY(-10px);
+            }}
+            100% {{
+                transform: translateY(0px);
             }}
         }}
 
@@ -64,7 +77,7 @@ st.markdown(
         /* 히어로 섹션 */
         .hero-section {{
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -80,10 +93,14 @@ st.markdown(
             border-radius: 28px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
             border: 1px solid #f1f5f9;
-            transition: transform 0.4s ease;
+            /* 플로팅 애니메이션 적용 */
+            animation: floatAnimation 4s ease-in-out infinite;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }}
         .hero-graphic:hover {{
-            transform: translateY(-6px);
+            animation-play-state: paused;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(62, 178, 184, 0.15);
         }}
 
         .hero-title {{
@@ -105,7 +122,7 @@ st.markdown(
             letter-spacing: -0.5px;
         }}
 
-        /* 기능 카드 섹션 */
+        /* 기능 카드 섹션 (인터랙션 강화) */
         .feature-container {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -121,14 +138,15 @@ st.markdown(
             padding: 40px 32px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-align: left;
+            cursor: pointer;
         }}
 
         .feature-card:hover {{
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(62, 178, 184, 0.1);
-            border-color: #cbd5e1;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(62, 178, 184, 0.12);
+            border-color: #3bb2b8;
         }}
 
         .feature-icon {{
@@ -141,6 +159,12 @@ st.markdown(
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {{
+            transform: scale(1.1) rotate(5deg);
+            background: #e0f7fa;
         }}
 
         .feature-card h3 {{
@@ -174,6 +198,10 @@ st.markdown(
             padding: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }}
+        .bento-box:hover {{
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
         }}
         .bento-box h3 {{
             margin-top: 0;
@@ -213,13 +241,14 @@ with header_col2:
             font-size: 15px !important;
             font-weight: 600 !important;
             border-radius: 30px !important;
-            transition: all 0.2s ease !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         div[data-testid="column"] button[key="login_custom_btn"]:hover {
             background: #0f172a !important;
             color: #ffffff !important;
             border-color: #0f172a !important;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 23, 42, 0.15);
         }
         </style>
         """,
@@ -238,7 +267,7 @@ st.markdown(
 # [PAGE 1] 랜딩 페이지
 # =========================================================
 if st.session_state.page == "landing":
-  # 히어로 섹션
+  # 히어로 섹션 (플로팅 애니메이션 적용 이미지)
   st.markdown(
       f"""
         <div class="hero-section">
@@ -266,11 +295,11 @@ if st.session_state.page == "landing":
             border-radius: 50px !important;
             box-shadow: 0 10px 25px rgba(62, 178, 184, 0.3) !important;
             width: 100%;
-            transition: all 0.3s ease !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         div.stButton > button[kind="primary"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(126, 87, 194, 0.4) !important;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 18px 35px rgba(126, 87, 194, 0.45) !important;
             filter: brightness(1.05);
         }
         </style>
@@ -284,7 +313,7 @@ if st.session_state.page == "landing":
 
   st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
 
-  # 하단 기능 소개 카드 3가지
+  # 하단 기능 소개 카드 3가지 (입체 호버 모션 적용)
   st.markdown(
       """
         <div class="feature-container">
