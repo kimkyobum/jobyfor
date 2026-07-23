@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 디자인 및 UI 스타일 주입 (꾸미기 효과 포함)
+# 2. 디자인 및 UI 스타일 주입
 st.markdown(
     f"""
     <style>
@@ -98,7 +98,7 @@ st.markdown(
             text-align: center;
         }}
 
-        /* 꾸며진 기능 소개 카드 섹션 */
+        /* 기능 소개 카드 섹션 */
         .feature-container {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -188,27 +188,12 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 헤더 GNB 구현
+# 상단 헤더 (메뉴 삭제, 깔끔한 로고만 배치)
 # =========================================================
-h_cols = st.columns([2.5, 1.2, 1.2, 1.2, 1.2, 1.2])
-with h_cols[0]:
-  if st.button("mystair", key="logo_btn", use_container_width=True):
+col_logo, col_blank = st.columns([2, 5])
+with col_logo:
+  if st.button("mystair", key="logo_btn", use_container_width=False):
     navigate_to("landing")
-with h_cols[1]:
-  if st.button("진로 로드맵", key="nav_roadmap", use_container_width=True):
-    navigate_to("dashboard")
-with h_cols[2]:
-  if st.button("취업 정보", key="nav_job", use_container_width=True):
-    st.toast("취업 정보 페이지입니다.")
-with h_cols[3]:
-  if st.button("커뮤니티", key="nav_comm", use_container_width=True):
-    st.toast("커뮤니티 페이지입니다.")
-with h_cols[4]:
-  if st.button("마이 페이지", key="nav_my", use_container_width=True):
-    st.toast("마이 페이지입니다.")
-with h_cols[5]:
-  if st.button("로그인", key="login_btn", use_container_width=True):
-    st.toast("로그인 창이 열립니다.")
 
 st.markdown(
     "<hr style='margin: 10px 0 30px 0; border: none; border-top: 1px solid"
@@ -217,10 +202,10 @@ st.markdown(
 )
 
 # =========================================================
-# [PAGE 1] 랜딩 페이지 (꾸며진 버전)
+# [PAGE 1] 랜딩 페이지
 # =========================================================
 if st.session_state.page == "landing":
-  # 히어로 섹션 (이미지 + 타이틀 + 서브타이틀)
+  # 히어로 섹션
   st.markdown(
       f"""
         <div class="hero-section">
@@ -264,7 +249,7 @@ if st.session_state.page == "landing":
 
   st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
 
-  # 하단 핵심 기능 소개 카드 3가지 (새롭게 추가된 꾸밈 요소)
+  # 하단 기능 소개 카드 3가지
   st.markdown(
       """
         <div class="feature-container">
