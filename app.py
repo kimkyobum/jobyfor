@@ -25,7 +25,7 @@ img_src = (
     else "https://via.placeholder.com/320x200/f4f5fa/a7e0e2?text=Image+Not+Found"
 )
 
-# 2. 디자인 및 UI 스타일 주입
+# 2. 디자인 및 UI 스타일 주입 (예쁜 로그인 버튼 스타일 포함)
 st.markdown(
     f"""
     <style>
@@ -47,14 +47,15 @@ st.markdown(
         }}
 
         /* 로고 스타일 */
-        .logo {{
+        .logo-text {{
             font-size: 28px;
             font-weight: 800;
             background: linear-gradient(90deg, #3bb2b8, #7e57c2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            cursor: pointer;
             letter-spacing: -0.5px;
+            display: inline-block;
+            padding-top: 5px;
         }}
 
         /* 히어로 섹션 */
@@ -188,15 +189,63 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 상단 헤더 (메뉴 삭제, 깔끔한 로고만 배치)
+# 상단 헤더 (군더더기 없이 로고와 예쁜 로그인 버튼만 배치)
 # =========================================================
-col_logo, col_blank = st.columns([2, 5])
-with col_logo:
-  if st.button("mystair", key="logo_btn", use_container_width=False):
+header_col1, header_col2 = st.columns([6, 1])
+
+with header_col1:
+  if st.button("mystair", key="logo_text_btn", use_container_width=False):
     navigate_to("landing")
+  # 버튼 기본 스타일을 투명하고 로고처럼 보이게 조절하는 CSS
+  st.markdown(
+      """
+        <style>
+        div[data-testid="column"] button[key="logo_text_btn"] {
+            background: transparent !important;
+            border: none !important;
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            background: linear-gradient(90deg, #3bb2b8, #7e57c2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 !important;
+        }
+        </style>
+        """,
+      unsafe_allow_html=True,
+  )
+
+with header_col2:
+  # 예쁜 로그인 버튼 스타일 주입
+  st.markdown(
+      """
+        <style>
+        div[data-testid="column"] button[key="login_custom_btn"] {
+            background: #ffffff !important;
+            color: #333333 !important;
+            border: 1px solid #e0e0e0 !important;
+            padding: 8px 20px !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            border-radius: 30px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+            transition: all 0.2s ease !important;
+        }
+        div[data-testid="column"] button[key="login_custom_btn"]:hover {
+            background: #111111 !important;
+            color: #ffffff !important;
+            border-color: #111111 !important;
+            transform: translateY(-2px);
+        }
+        </style>
+        """,
+      unsafe_allow_html=True,
+  )
+  if st.button("로그인", key="login_custom_btn", use_container_width=True):
+    st.toast("로그인 창이 열립니다.")
 
 st.markdown(
-    "<hr style='margin: 10px 0 30px 0; border: none; border-top: 1px solid"
+    "<hr style='margin: 5px 0 30px 0; border: none; border-top: 1px solid"
     " #eaeaea;'>",
     unsafe_allow_html=True,
 )
