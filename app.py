@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 화면 전체를 활용하는 풀 와이드 앰비언트 그라데이션 및 모던 스타일 CSS 주입
+# 2. 풀 와이드 스픽 스타일 레이아웃 및 앰비언트 그라데이션 CSS 주입
 st.markdown(
     """
 <style>
@@ -42,7 +42,6 @@ body, [class*="css"] {
     color: #1e293b;
 }
 
-/* 🌟 제한 폭(max-width)을 해제하고 화면 전체 너비를 쓰도록 설정 */
 .block-container {
     padding-top: 1.5rem;
     padding-bottom: 10rem;
@@ -58,7 +57,7 @@ body, [class*="css"] {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .speak-navbar {
@@ -102,10 +101,10 @@ body, [class*="css"] {
     color: #475569;
 }
 
-/* 첫 화면 히어로 섹션 */
-.hero-section {
-    text-align: center;
-    padding: 30px 0 20px 0;
+/* 스픽 스타일 좌우 배치 히어로 섹션 */
+.hero-section-left {
+    text-align: left;
+    padding: 40px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -126,11 +125,11 @@ body, [class*="css"] {
 }
 
 .hero-title {
-    font-size: 64px;
+    font-size: 56px;
     font-weight: 800;
     margin: 0 0 20px 0;
     line-height: 1.2;
-    letter-spacing: -2.5px;
+    letter-spacing: -2px;
     color: #0f172a;
 }
 
@@ -141,11 +140,12 @@ body, [class*="css"] {
 }
 
 .hero-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     color: #64748b;
-    margin: 0 0 40px 0;
+    margin: 0 0 35px 0;
     font-weight: 400;
-    letter-spacing: -0.5px;
+    line-height: 1.6;
+    letter-spacing: -0.3px;
 }
 
 /* 3D 이미지 플로팅 컨테이너 */
@@ -153,12 +153,12 @@ body, [class*="css"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0 50px 0;
     animation: floatAnimation 4s ease-in-out infinite;
 }
 
 .hero-graphic {
-    width: 380px;
+    width: 100%;
+    max-width: 420px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.08));
@@ -265,7 +265,7 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 🌟 풀 와이드 스픽 스타일 상단바 배치
+# 🌟 스픽 스타일 풀 와이드 상단바 배치
 # =========================================================
 st.markdown(
     """
@@ -285,75 +285,73 @@ st.markdown(
 )
 
 # =========================================================
-# [PAGE 1] 메인 랜딩 페이지 (시작하자마자 히어로 화면 노출)
+# [PAGE 1] 메인 랜딩 페이지 (스픽 스타일 좌우 배치 히어로)
 # =========================================================
 if st.session_state.page == "landing":
 
-  # --- [섹션 1] 첫 화면 (히어로) ---
-  st.markdown(
-      """
-<div class="hero-section">
-    <div class="hero-badge">✨ 마이스터고 학생을 위한 단 하나의 진로 파트너</div>
-    <h1 class="hero-title">세상으로 나아가는<br><span>너의 첫 번째 계단</span></h1>
-    <p class="hero-subtitle">실습 기록부터 AI 자소서까지, 꿈을 현실로 만드는 혁신적인 커리어 플랫폼</p>
-</div>
-""",
-      unsafe_allow_html=True,
-  )
+  # --- [섹션 1] 첫 화면 (히어로: 좌우 분할 구조) ---
+  hero_col1, hero_col2 = st.columns([1.2, 1], gap="large")
 
-  # 3D 메인 이미지
-  img_col1, img_col2, img_col3 = st.columns([1, 1.4, 1])
-  with img_col2:
+  with hero_col1:
+    st.markdown(
+        """
+    <div class="hero-section-left">
+        <div class="hero-badge">✨ 마이스터고 학생을 위한 단 하나의 진로 파트너</div>
+        <h1 class="hero-title">세상으로 나아가는<br><span>너의 첫 번째 계단</span></h1>
+        <p class="hero-subtitle">실습 기록부터 AI 자소서까지, 꿈을 현실로 만드는 혁신적인 커리어 플랫폼</p>
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    # CTA 버튼 스타일링 및 배치
+    st.markdown(
+        """
+    <style>
+    div.stButton > button[kind="primary"] {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        border: none !important;
+        padding: 16px 32px !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        border-radius: 50px !important;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
+        width: fit-content !important;
+        transition: all 0.3s ease !important;
+    }
+    div.stButton > button[kind="primary"]:hover {
+        background: #334155 !important;
+        transform: translateY(-2px);
+    }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+    if st.button("나의 진로 탐색 시작하기", type="primary"):
+      navigate_to("dashboard")
+
+  with hero_col2:
     if os.path.exists("main_image.png"):
       with open("main_image.png", "rb") as f:
         encoded_img = base64.b64encode(f.read()).decode("utf-8")
       st.markdown(
           f"""
-<div class="hero-graphic-container">
-    <img src="data:image/png;base64,{encoded_img}" class="hero-graphic" alt="3D 계단 이미지">
-</div>
-""",
+    <div class="hero-graphic-container" style="padding-top: 20px;">
+        <img src="data:image/png;base64,{encoded_img}" class="hero-graphic" alt="3D 계단 이미지">
+    </div>
+    """,
           unsafe_allow_html=True,
       )
     else:
       st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
-
-  # CTA 버튼
-  st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
-  col_c1, col_c2, col_c3 = st.columns([2, 1.6, 2])
-  with col_c2:
-    st.markdown(
-        """
-<style>
-div.stButton > button[kind="primary"] {
-    background: #0f172a !important;
-    color: #ffffff !important;
-    border: none !important;
-    padding: 18px 36px !important;
-    font-size: 17px !important;
-    font-weight: 700 !important;
-    border-radius: 50px !important;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15) !important;
-    width: 100%;
-    transition: all 0.3s ease !important;
-}
-div.stButton > button[kind="primary"]:hover {
-    background: #334155 !important;
-    transform: translateY(-2px);
-}
-</style>
-""",
-        unsafe_allow_html=True,
-    )
-    if st.button("나의 진로 탐색 시작하기", type="primary", use_container_width=True):
-      navigate_to("dashboard")
 
   # --- [섹션 2] 서비스 기획 배경 ---
   st.markdown(
       """
 <div class="scroll-section">
     <div class="section-tag">Project Background</div>
-    <div class="section-heading">왜 MyStair가<br>필요할까요?</div>
+    <div class="section-heading">왜 MyStair가 필요할까요?</div>
     <div class="section-desc">일반고와 다른 마이스터고만의 특수한 현장 실습과 기술 중심 교육 과정을 온전히 담아내기 위해 기획되었습니다.</div>
 </div>
 """,
