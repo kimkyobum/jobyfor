@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 전체 그라데이션 배경, 세련된 로고 및 카드 스타일 CSS 주입
+# 2. 전체 그라데이션 배경, 세련된 카드 및 애니메이션 CSS 주입
 st.markdown(
     """
 <style>
@@ -47,24 +47,6 @@ body, [class*="css"] {
     max-width: 1050px !important;
     margin: 0 auto;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 왼쪽 상단 MyStair 타이틀 버튼 커스텀 스타일링 */
-button[key="top_logo_btn"] {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    font-size: 26px !important;
-    font-weight: 800 !important;
-    background: linear-gradient(90deg, #0f172a, #334155);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -1.2px;
-    box-shadow: none !important;
-    text-align: left !important;
-}
-button[key="top_logo_btn"]:hover {
-    opacity: 0.8;
 }
 
 /* 히어로 섹션 */
@@ -160,7 +142,7 @@ button[key="top_logo_btn"]:hover {
     margin-bottom: 50px;
 }
 
-/* 모던 글래스 카드 스타일 */
+/* 모던 글래스 카드 스타일 (높이 완벽 일치) */
 .modern-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
@@ -230,10 +212,58 @@ def navigate_to(page_name):
 
 
 # =========================================================
-# 왼쪽 상단 브랜드 타이틀 배치 (네비게이션 바 제거됨)
+# 왼쪽 상단 로고 이미지 배치 영역
 # =========================================================
-if st.button("MyStair", key="top_logo_btn"):
-  navigate_to("landing")
+logo_col, space_col, login_col = st.columns([2, 7, 1])
+
+with logo_col:
+  if os.path.exists("logo.png"):
+    with open("logo.png", "rb") as f:
+      encoded_logo = base64.b64encode(f.read()).decode("utf-8")
+    st.markdown(
+        f"""
+        <div style="cursor: pointer; display: inline-flex; align-items: center;" onclick="window.location.reload();">
+            <img src="data:image/png;base64,{encoded_logo}" style="height: 38px; width: auto; object-fit: contain;" alt="MyStair Logo">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+  else:
+    # logo.png 파일이 없을 경우 보여지는 대체 텍스트 로고
+    st.markdown(
+        """
+        <div style="font-size: 26px; font-weight: 800; background: linear-gradient(90deg, #0f172a, #334155); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1.2px; padding: 2px 0;">
+            MyStair
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with login_col:
+  st.markdown(
+      """
+<style>
+div[data-testid="column"] button[key="login_btn"] {
+    background: rgba(255, 255, 255, 0.8) !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 20px !important;
+    transition: all 0.2s ease !important;
+}
+div[data-testid="column"] button[key="login_btn"]:hover {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+}
+</style>
+""",
+      unsafe_allow_html=True,
+  )
+  if st.button("로그인", key="login_btn", use_container_width=True):
+    st.toast("로그인 창이 열립니다.")
 
 st.markdown(
     "<hr style='margin: 15px 0 30px 0; border: none; border-top: 1px solid rgba(226, 232, 240, 0.6);'>",
@@ -257,7 +287,7 @@ if st.session_state.page == "landing":
       unsafe_allow_html=True,
   )
 
-  # 배경 블록이 완전히 제거된 깔끔한 3D 메인 이미지
+  # 배경 블록이 없는 깔끔한 3D 메인 이미지
   img_col1, img_col2, img_col3 = st.columns([1, 1.4, 1])
   with img_col2:
     if os.path.exists("main_image.png"):
