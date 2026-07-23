@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 대단원 내부 간격은 좁히고 대단원끼리만 구분감을 주는 최적화된 CSS 주입
+# 2. 대단원 간격을 대폭 넓힌 풀 와이드 앰비언트 스타일 CSS 주입
 st.markdown(
     """
 <style>
@@ -45,7 +45,7 @@ body, [class*="css"] {
 /* 🌟 와이드 컨테이너 폭 (1200px) */
 .block-container {
     padding-top: 2rem;
-    padding-bottom: 12rem;
+    padding-bottom: 15rem;
     max-width: 1200px !important;
     margin: 0 auto !important;
     padding-left: 3rem !important;
@@ -106,7 +106,7 @@ body, [class*="css"] {
 /* 히어로 섹션 */
 .hero-section-left {
     text-align: left;
-    padding: 20px 0 10px 0;
+    padding: 30px 0 15px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -166,9 +166,9 @@ body, [class*="css"] {
     filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.08));
 }
 
-/* 🌟 대단원 간격은 넓히고, 대단원 내부(제목-설명-카드) 간격은 좁게 유지하는 스타일 */
+/* 🌟 대단원 사이의 간격을 확실하게 띄워 첫 화면에서 보이지 않도록 설정 */
 .scroll-section {
-    padding-top: 130px;
+    padding-top: 260px;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -194,7 +194,7 @@ body, [class*="css"] {
     font-size: 18px;
     color: #64748b;
     line-height: 1.6;
-    margin-bottom: 30px; /* 제목과 카드 사이의 간격을 밀집되게 유지 */
+    margin-bottom: 30px; /* 대단원 내부 제목과 카드 사이는 좁게 유지 */
 }
 
 /* 모던 글래스 카드 스타일 */
