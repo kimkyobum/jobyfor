@@ -49,7 +49,7 @@ header[data-testid="stHeader"] {
 )
 
 # =========================================================
-# [PAGE 1] 메인 포털 대시보드 (홍보 페이지의 시각적 감성 적용)
+# [PAGE 1] 메인 포털 대시보드
 # =========================================================
 if st.session_state.page == "main":
     
@@ -60,7 +60,7 @@ if st.session_state.page == "main":
         if st.button("👉 서비스 소개(홍보) 가기", use_container_width=True):
             navigate_to("intro")
 
-    # 메인 포털 전용 CSS (글래스모피즘 & 부드러운 UI)
+    # 메인 포털 전용 CSS
     css_string = """
 <style>
 .block-container {
@@ -99,7 +99,7 @@ if st.session_state.page == "main":
     padding: 0 40px;
 }
 
-/* 헤더 & 검색창 (글래스 둥근 느낌) */
+/* 헤더 & 검색창 */
 .ms-header {
     display: flex;
     justify-content: space-between;
@@ -160,7 +160,7 @@ if st.session_state.page == "main":
     background: #0f172a; color: white; border-color: #0f172a; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
 }
 
-/* 메인 그리드 및 공통 글래스 카드 (홍보 사이트 느낌) */
+/* 메인 그리드 및 공통 글래스 카드 */
 .ms-main-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 30px; margin-top: 10px; }
 .glass-panel {
     background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 28px; padding: 40px; border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03); transition: all 0.4s ease;
@@ -190,7 +190,7 @@ if st.session_state.page == "main":
 }
 .ms-quick-item:hover { background: #ffffff; border-color: #3bb2b8; box-shadow: 0 15px 30px rgba(59,178,184,0.08); color: #0f172a; transform: translateY(-4px); }
 
-/* 🌟 10초 컷 맞춤 배너 (그라데이션 글래스) */
+/* 🌟 10초 컷 맞춤 배너 */
 .ms-mid-banner {
     background: linear-gradient(135deg, rgba(59,178,184,0.1), rgba(126,87,194,0.1)); border: 1px solid rgba(126,87,194,0.2); border-radius: 28px; padding: 40px 50px; display: flex; justify-content: space-between; align-items: center; margin: 60px 0; backdrop-filter: blur(10px);
 }
@@ -226,7 +226,7 @@ if st.session_state.page == "main":
 """
     st.markdown(css_string, unsafe_allow_html=True)
     
-    # 🌟 HTML 구조 주입 (들여쓰기 절대 금지 - 코드 블록 오류 방지)
+    # 🌟 HTML 구조 주입 (들여쓰기 없이 좌측 정렬)
     html_string = """<div class="ms-top-banner">
 <span class="ms-top-banner-badge">HOT</span>
 <span>커리어 고민 있다면? 마이스터고 출신 현직자 3인에게 물어보세요!</span>
@@ -243,15 +243,18 @@ if st.session_state.page == "main":
 <button class="ms-btn-outline">선생님 워크스페이스</button>
 </div>
 </div>
+
+<!-- 변경된 네비게이션 순서 -->
 <div class="ms-nav">
-<span class="active">MBTI</span>
-<span>홀랜드직무검사</span>
-<span>진로추천</span>
+<span class="active">진로추천</span>
 <span>실습 JOB 찾기</span>
-<span>합격 자소서</span>
 <span>공채·기업정보</span>
+<span>MBTI</span>
+<span>홀랜드직무검사</span>
+<span>합격 자소서</span>
 <span>선배 톡톡</span>
 </div>
+
 <div class="ms-main-grid">
 <div class="glass-panel">
 <div class="ms-ai-header">
