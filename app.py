@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# 2. 화면 전체를 꽉 채우는 풀 와이드 레이아웃 CSS 주입
+# 2. 풀 와이드 상태에서 중간 공백을 완벽히 해결한 최적화 CSS 주입
 st.markdown(
     """
 <style>
@@ -42,23 +42,23 @@ body, [class*="css"] {
     color: #1e293b;
 }
 
-/* 🌟 화면 전체(Full-Width)를 쓰도록 max-width 제한 해제 및 여백 최적화 */
+/* 🌟 와이드 화면에서 컨텐츠가 너무 멀어지지 않도록 최적의 최대 폭(1350px)과 균등 정렬 적용 */
 .block-container {
     padding-top: 2rem;
-    padding-bottom: 10rem;
-    max-width: 100% !important;
+    padding-bottom: 12rem;
+    max-width: 1350px !important;
     margin: 0 auto !important;
-    padding-left: 5rem !important;
-    padding-right: 5rem !important;
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
     animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 🌟 상단 알약 네비게이션 바 (화면 전체 폭에 맞춤) */
+/* 🌟 상단 알약 네비게이션 바 */
 .speak-navbar-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
 }
 
 .speak-navbar {
@@ -72,7 +72,7 @@ body, [class*="css"] {
     border-radius: 100px;
     padding: 14px 40px;
     width: 100%;
-    max-width: 100%;
+    max-width: 1350px;
 }
 
 .nav-left {
@@ -116,10 +116,10 @@ body, [class*="css"] {
     gap: 8px;
 }
 
-/* 🌟 웅장하고 몰입감 있는 히어로 섹션 */
+/* 🌟 중간 공백을 없애고 밀착감을 높인 히어로 섹션 */
 .hero-section-left {
     text-align: left;
-    padding: 30px 0;
+    padding: 20px 0;
     animation: smoothFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -140,7 +140,7 @@ body, [class*="css"] {
 }
 
 .hero-title {
-    font-size: 64px;
+    font-size: 60px;
     font-weight: 800;
     margin: 0 0 24px 0;
     line-height: 1.2;
@@ -173,7 +173,7 @@ body, [class*="css"] {
 
 .hero-graphic {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 35px 50px rgba(0, 0, 0, 0.1));
@@ -181,7 +181,7 @@ body, [class*="css"] {
 
 /* 🌟 대단원 간의 시원한 여백 (롱 스크롤) */
 .scroll-section {
-    padding-top: 280px;
+    padding-top: 240px;
     animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -195,7 +195,7 @@ body, [class*="css"] {
 }
 
 .section-heading {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 800;
     color: #0f172a;
     margin-bottom: 12px;
@@ -280,7 +280,7 @@ body, [class*="css"] {
 
 /* 프로페셔널 테크 푸터 디자인 */
 .footer-container {
-    margin-top: 250px;
+    margin-top: 220px;
     padding: 60px 0;
     border-top: 1px solid rgba(226, 232, 240, 0.8);
     display: flex;
@@ -370,8 +370,8 @@ st.markdown(
 # =========================================================
 if st.session_state.page == "landing":
 
-  # --- [섹션 1] 첫 화면 (히어로) ---
-  hero_col1, hero_col2 = st.columns([1.1, 0.9], gap="large")
+  # --- [섹션 1] 첫 화면 (히어로: 좌우 균형을 1대1로 잡아 중간 공백 해결) ---
+  hero_col1, hero_col2 = st.columns([1, 1], gap="large")
 
   with hero_col1:
     st.markdown(
