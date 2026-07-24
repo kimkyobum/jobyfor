@@ -22,7 +22,7 @@ def navigate_to(page_name):
     st.rerun()
 
 # =========================================================
-# [PAGE 1] 진짜 메인 대시보드 (잡코리아 스타일 포털 UI)
+# [PAGE 1] 메인 포털 대시보드 (MyStair 맞춤형 브랜드 UI)
 # =========================================================
 if st.session_state.page == "main":
     
@@ -33,7 +33,7 @@ if st.session_state.page == "main":
         if st.button("👉 서비스 소개(홍보) 가기", use_container_width=True):
             navigate_to("intro")
 
-    # 메인 포털 전용 CSS 주입
+    # MyStair 맞춤형 포털 CSS 주입
     css_string = """
 <style>
 @import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
@@ -49,325 +49,237 @@ header[data-testid="stHeader"] {
 display: none !important;
 }
 
-.top-banner {
+/* 🌟 상단 다크 배너 (MyStair 브랜드 컬러 적용) */
+.ms-top-banner {
 width: 100%;
-background-color: #3b82f6;
+background-color: #0f172a;
 color: #ffffff;
 text-align: center;
-padding: 12px 0;
+padding: 14px 0;
 font-size: 15px;
-font-weight: 700;
-letter-spacing: -0.5px;
+font-weight: 600;
+letter-spacing: -0.3px;
 display: flex;
 justify-content: center;
 align-items: center;
 gap: 15px;
 }
-
-.top-banner-badge {
-border: 1px solid rgba(255,255,255,0.4);
-padding: 4px 12px;
+.ms-top-banner-badge {
+background: linear-gradient(90deg, #3bb2b8, #7e57c2);
+padding: 4px 14px;
 border-radius: 50px;
 font-size: 12px;
+font-weight: 800;
 }
 
-.jk-container {
+/* 🌟 중앙 컨테이너 */
+.ms-container {
 max-width: 1200px;
 margin: 0 auto;
 padding: 0 20px;
 }
 
-.jk-header {
+/* 🌟 헤더 영역 (검색창 모던화) */
+.ms-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 30px 0;
+padding: 35px 0 25px 0;
 }
-
-.jk-logo {
-font-size: 32px;
+.ms-logo {
+font-size: 34px;
 font-weight: 900;
-color: #1d4ed8;
+background: linear-gradient(90deg, #0f172a, #334155);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 letter-spacing: -1.5px;
 cursor: pointer;
 }
-
-.jk-search-box {
+.ms-search-box {
 display: flex;
 align-items: center;
-border: 2px solid #3b82f6;
+border: 1px solid #e2e8f0;
 border-radius: 50px;
-padding: 5px 10px 5px 20px;
-width: 500px;
+padding: 6px 6px 6px 24px;
+width: 520px;
 background: #ffffff;
+box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+transition: all 0.3s ease;
 }
-
-.jk-search-loc {
-font-size: 14px;
-font-weight: 700;
-color: #1e293b;
-padding-right: 15px;
-border-right: 1px solid #e2e8f0;
-cursor: pointer;
+.ms-search-box:focus-within {
+border-color: #3bb2b8;
+box-shadow: 0 10px 30px rgba(59,178,184,0.1);
 }
-
-.jk-search-input {
+.ms-search-input {
 border: none;
 outline: none;
-padding: 10px 15px;
 width: 100%;
-font-size: 15px;
+font-size: 16px;
 font-family: 'SUIT';
-}
-
-.jk-search-btn {
-background: transparent;
-border: none;
-font-size: 20px;
-cursor: pointer;
-}
-
-.jk-auth-group {
-display: flex;
-gap: 10px;
-}
-
-.jk-btn-outline {
-border: 1px solid #e2e8f0;
-background: #ffffff;
-padding: 8px 16px;
-border-radius: 8px;
-font-size: 13px;
-font-weight: 600;
-color: #475569;
-cursor: pointer;
-}
-
-.jk-nav {
-display: flex;
-gap: 35px;
-padding-bottom: 15px;
-border-bottom: 1px solid #e2e8f0;
-font-size: 18px;
-font-weight: 800;
 color: #1e293b;
 }
+.ms-search-input::placeholder { color: #94a3b8; }
+.ms-search-btn {
+background: linear-gradient(90deg, #3bb2b8, #7e57c2);
+border: none;
+width: 42px;
+height: 42px;
+border-radius: 50%;
+color: white;
+font-size: 18px;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 4px 10px rgba(126,87,194,0.3);
+}
+.ms-auth-group {
+display: flex;
+gap: 12px;
+}
+.ms-btn-outline {
+border: 1px solid #e2e8f0;
+background: #ffffff;
+padding: 10px 20px;
+border-radius: 50px;
+font-size: 14px;
+font-weight: 700;
+color: #475569;
+cursor: pointer;
+transition: all 0.2s;
+}
+.ms-btn-outline:hover { background: #f8fafc; color: #0f172a; border-color: #cbd5e1; }
 
-.jk-nav span { cursor: pointer; }
-.jk-nav span:hover { color: #3b82f6; }
+/* 🌟 네비게이션 바 */
+.ms-nav {
+display: flex;
+gap: 40px;
+padding-bottom: 20px;
+border-bottom: 1px solid #e2e8f0;
+font-size: 17px;
+font-weight: 800;
+color: #334155;
+}
+.ms-nav span { cursor: pointer; position: relative; padding-bottom: 5px; }
+.ms-nav span:hover { color: #0f172a; }
+.ms-nav span.active { color: #3bb2b8; }
+.ms-nav span.active::after {
+content: ''; position: absolute; left: 0; bottom: -20px; width: 100%; height: 3px; background: #3bb2b8; border-radius: 3px 3px 0 0;
+}
 
-.jk-main-grid {
+/* 🌟 메인 그리드 레이아웃 */
+.ms-main-grid {
 display: grid;
 grid-template-columns: 2fr 1.1fr;
-gap: 24px;
-margin-top: 30px;
+gap: 30px;
+margin-top: 40px;
 }
 
-.jk-glow-box {
+/* AI 추천 박스 (고급스러운 글래스 효과) */
+.ms-ai-box {
+background: #f8fafc;
+border-radius: 24px;
+padding: 35px;
+border: 1px solid #e2e8f0;
 position: relative;
-background: #ffffff;
-border-radius: 16px;
-padding: 30px;
-z-index: 1;
+overflow: hidden;
 }
-
-.jk-glow-box::before {
-content: "";
-position: absolute;
-top: -2px; left: -2px; right: -2px; bottom: -2px;
-background: linear-gradient(135deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
-z-index: -1;
-border-radius: 18px;
-opacity: 0.7;
-}
-
-.jk-glow-header {
+.ms-ai-header {
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
-margin-bottom: 20px;
+margin-bottom: 25px;
 }
-
-.jk-blue-btn {
-background: #3b82f6;
-color: white;
-border: none;
-padding: 10px 20px;
-border-radius: 8px;
-font-weight: 700;
-font-size: 14px;
-cursor: pointer;
+.ms-ai-title {
+font-size: 20px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;
+}
+.ms-ai-title span {
+background: linear-gradient(90deg, #3bb2b8, #7e57c2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.ms-ai-btn {
+background: #0f172a; color: white; border: none; padding: 10px 24px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer;
 }
 
 .blur-card-container {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 15px;
-filter: blur(4px);
-opacity: 0.6;
-user-select: none;
-pointer-events: none;
+display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; filter: blur(5px); opacity: 0.7; pointer-events: none;
 }
-
 .blur-card {
-border: 1px solid #e2e8f0;
-border-radius: 12px;
-padding: 20px;
-height: 140px;
-background: #f8fafc;
+background: #ffffff; border-radius: 16px; padding: 24px; height: 150px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #f1f5f9;
 }
+.blur-line { height: 14px; background: #e2e8f0; border-radius: 10px; margin-bottom: 12px; }
 
-.blur-line {
-height: 12px;
-background: #cbd5e1;
-border-radius: 10px;
-margin-bottom: 10px;
+/* 우측 맞춤 정보 박스 */
+.ms-right-box {
+background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 35px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
-
-.jk-right-box {
-border: 1px solid #e2e8f0;
-border-radius: 16px;
-padding: 30px 24px;
-background: #ffffff;
+.ms-gradient-banner {
+background: linear-gradient(135deg, rgba(59,178,184,0.1), rgba(126,87,194,0.1));
+color: #0f172a; padding: 18px 20px; border-radius: 16px; font-weight: 800; font-size: 15px;
+display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 24px; border: 1px solid rgba(126,87,194,0.1);
 }
-
-.jk-yellow-banner {
-background: #fef9c3;
-color: #854d0e;
-padding: 16px;
-border-radius: 12px;
-font-weight: 700;
-font-size: 14px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-cursor: pointer;
-margin-bottom: 20px;
+.ms-quick-grid {
+display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
 }
-
-.jk-quick-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 12px;
+.ms-quick-item {
+background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 16px; padding: 20px;
+font-size: 14px; font-weight: 700; color: #334155; display: flex; flex-direction: column; justify-content: space-between; height: 100px; cursor: pointer; transition: all 0.2s;
 }
+.ms-quick-item:hover { background: #ffffff; border-color: #3bb2b8; box-shadow: 0 10px 20px rgba(59,178,184,0.05); color: #0f172a; }
 
-.jk-quick-item {
-border: 1px solid #e2e8f0;
-border-radius: 12px;
-padding: 16px;
-font-size: 13px;
-font-weight: 700;
-color: #1e293b;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-height: 90px;
-cursor: pointer;
+/* 🌟 10초 컷 맞춤 배너 */
+.ms-mid-banner {
+background: #0f172a; border-radius: 24px; padding: 35px; text-align: center; margin: 50px 0; color: white; display: flex; justify-content: space-between; align-items: center;
 }
-
-.jk-quick-item:hover { border-color: #cbd5e1; background: #f8fafc; }
-
-.jk-mid-banner {
-background: #f8fafc;
-border-radius: 16px;
-padding: 30px;
-text-align: center;
-margin: 40px 0;
+.ms-mid-btns { display: flex; gap: 16px; }
+.ms-mid-btn {
+background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; color: #ffffff; cursor: pointer; transition: all 0.2s;
 }
+.ms-mid-btn:hover { background: #ffffff; color: #0f172a; }
 
-.jk-mid-btns {
-display: flex;
-justify-content: center;
-gap: 16px;
-margin-top: 20px;
+/* 🌟 하단 인기 실습/JOB 섹션 */
+.ms-job-section { margin-bottom: 100px; }
+.ms-section-title { font-size: 24px; font-weight: 800; color: #0f172a; margin-bottom: 24px; }
+
+.ms-chip-group { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 5px; }
+.ms-chip {
+padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; color: #64748b; background: #f8fafc; cursor: pointer; border: 1px solid transparent; transition: all 0.2s;
 }
+.ms-chip.active { background: #0f172a; color: white; }
+.ms-chip:hover:not(.active) { background: #e2e8f0; color: #0f172a; }
 
-.jk-mid-btn {
-background: #ffffff;
-border: 1px solid #e2e8f0;
-padding: 16px 32px;
-border-radius: 12px;
-font-weight: 700;
-font-size: 15px;
-color: #1e293b;
-cursor: pointer;
-box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+.ms-job-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ms-job-card {
+border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px 24px; background: #ffffff; cursor: pointer; transition: all 0.3s ease;
 }
-
-.jk-job-section { margin-bottom: 80px; }
-.jk-section-title { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
-
-.jk-chip-group {
-display: flex;
-gap: 8px;
-margin-bottom: 24px;
-overflow-x: auto;
-padding-bottom: 5px;
-}
-
-.jk-chip {
-padding: 10px 20px;
-border-radius: 50px;
-font-size: 14px;
-color: #64748b;
-border: 1px solid #e2e8f0;
-white-space: nowrap;
-cursor: pointer;
-background: #ffffff;
-}
-
-.jk-chip.active {
-background: #eff6ff;
-color: #2563eb;
-border-color: #2563eb;
-font-weight: 700;
-}
-
-.jk-job-grid {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 16px;
-}
-
-.jk-job-card {
-border: 1px solid #e2e8f0;
-border-radius: 16px;
-padding: 24px;
-background: #ffffff;
-cursor: pointer;
-transition: all 0.2s ease;
-}
-
-.jk-job-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-.job-card-title { font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 8px; line-height: 1.4; }
-.job-card-comp { font-size: 13px; color: #64748b; margin-bottom: 16px; display: flex; justify-content: space-between;}
-.d-day { color: #ef4444; font-weight: 700; }
-.job-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.job-tag { font-size: 12px; padding: 4px 8px; background: #f1f5f9; color: #475569; border-radius: 4px; }
+.ms-job-card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.06); border-color: #cbd5e1; }
+.job-card-title { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 12px; line-height: 1.4; }
+.job-card-comp { font-size: 14px; color: #64748b; margin-bottom: 20px; display: flex; justify-content: space-between;}
+.d-day { color: #3bb2b8; font-weight: 800; }
+.job-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.job-tag { font-size: 12px; font-weight: 600; padding: 6px 12px; background: #f1f5f9; color: #475569; border-radius: 6px; }
 </style>
 """
     st.markdown(css_string, unsafe_allow_html=True)
     
-    # 🌟 HTML 구조 주입 (들여쓰기로 인한 코드 블록화 현상을 방지하기 위해 완전히 좌측 정렬)
-    html_string = """<div class="top-banner">
-<span class="top-banner-badge">실습 후 커리어 토크</span>
+    # 🌟 HTML 구조 주입 (들여쓰기 절대 금지)
+    html_string = """<div class="ms-top-banner">
+<span class="ms-top-banner-badge">실습 후 커리어 토크</span>
 <span>커리어 고민 있다면? 마이스터고 출신 현직자 3인에게 물어보세요!</span>
 </div>
-<div class="jk-container">
-<div class="jk-header">
-<div class="jk-logo">MyStair</div>
-<div class="jk-search-box">
-<div class="jk-search-loc">📍 지역 전체 ⌄</div>
-<input type="text" class="jk-search-input" placeholder="MBTI, 추천 직무, 자격증 검색">
-<button class="jk-search-btn">🔍</button>
+<div class="ms-container">
+<div class="ms-header">
+<div class="ms-logo">MyStair</div>
+<div class="ms-search-box">
+<input type="text" class="ms-search-input" placeholder="MBTI, 추천 직무, 자격증 검색">
+<button class="ms-search-btn">🔍</button>
 </div>
-<div class="jk-auth-group">
-<button class="jk-btn-outline">회원가입/로그인</button>
-<button class="jk-btn-outline">선생님 서비스 ⌄</button>
+<div class="ms-auth-group">
+<button class="ms-btn-outline">로그인</button>
+<button class="ms-btn-outline">선생님 서비스</button>
 </div>
 </div>
-<div class="jk-nav">
-<span style="color: #3b82f6;">MBTI</span>
+<div class="ms-nav">
+<span class="active">MBTI</span>
 <span>홀랜드직무검사</span>
 <span>진로추천</span>
 <span>실습 JOB 찾기</span>
@@ -375,82 +287,81 @@ transition: all 0.2s ease;
 <span>공채·기업정보</span>
 <span>선배 톡톡</span>
 </div>
-<div class="jk-main-grid">
-<div class="jk-glow-box">
-<div class="jk-glow-header">
+<div class="ms-main-grid">
+<div class="ms-ai-box">
+<div class="ms-ai-header">
 <div>
-<div style="color: #3b82f6; font-weight: 800; font-size: 16px;">✨ 오늘의 AI 추천</div>
-<p style="margin:0; font-size: 14px; color: #64748b; margin-top: 6px;">나의 MBTI와 홀랜드 결과에 맞는 맞춤 기회를 찾아드려요!</p>
+<div class="ms-ai-title">✨ 오늘의 <span>AI 추천</span></div>
+<p style="margin:0; font-size: 15px; color: #64748b; margin-top: 8px;">나의 MBTI와 홀랜드 결과에 맞는 맞춤 기회를 찾아드려요!</p>
 </div>
-<button class="jk-blue-btn">나만의 맞춤 정보 받기</button>
+<button class="ms-ai-btn">맞춤 정보 받기</button>
 </div>
 <div class="blur-card-container">
 <div class="blur-card">
 <div class="blur-line" style="width: 80%;"></div>
 <div class="blur-line" style="width: 60%;"></div>
-<div class="blur-line" style="width: 90%; margin-top: 20px;"></div>
+<div class="blur-line" style="width: 90%; margin-top: 25px;"></div>
 </div>
 <div class="blur-card">
 <div class="blur-line" style="width: 70%;"></div>
 <div class="blur-line" style="width: 50%;"></div>
-<div class="blur-line" style="width: 85%; margin-top: 20px;"></div>
+<div class="blur-line" style="width: 85%; margin-top: 25px;"></div>
 </div>
 <div class="blur-card">
 <div class="blur-line" style="width: 90%;"></div>
 <div class="blur-line" style="width: 40%;"></div>
-<div class="blur-line" style="width: 75%; margin-top: 20px;"></div>
+<div class="blur-line" style="width: 75%; margin-top: 25px;"></div>
 </div>
 </div>
 </div>
-<div class="jk-right-box">
-<div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom:15px;">
-미래의 명장님을 위한 맞춤 정보를 제공해드릴게요!
+<div class="ms-right-box">
+<div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom:20px; line-height: 1.4;">
+미래의 명장님을 위한<br>맞춤 정보를 제공해드릴게요!
 </div>
-<div class="jk-yellow-banner">
-<span>⚡ 커리어 취향 설정하고 맞춤 공고 받아보기</span>
+<div class="ms-gradient-banner">
+<span>⚡ 커리어 취향 설정하기</span>
 <span>></span>
 </div>
-<div class="jk-quick-grid">
-<div class="jk-quick-item">
+<div class="ms-quick-grid">
+<div class="ms-quick-item">
 <span>이번 달<br>실습 일정</span>
-<span style="font-size: 20px; text-align: right;">🗂️</span>
+<span style="font-size: 22px; text-align: right;">🗂️</span>
 </div>
-<div class="jk-quick-item">
+<div class="ms-quick-item">
 <span>나의 진로<br>추천 정보</span>
-<span style="font-size: 20px; text-align: right;">🎯</span>
+<span style="font-size: 22px; text-align: right;">🎯</span>
 </div>
-<div class="jk-quick-item">
+<div class="ms-quick-item">
 <span>요즘 실무<br>기술 트렌드</span>
-<span style="font-size: 20px; text-align: right;">📈</span>
+<span style="font-size: 22px; text-align: right;">📈</span>
 </div>
-<div class="jk-quick-item">
+<div class="ms-quick-item">
 <span>AI 자소서<br>완성도 분석</span>
-<span style="font-size: 20px; text-align: right;">✨</span>
+<span style="font-size: 22px; text-align: right;">✨</span>
 </div>
 </div>
 </div>
 </div>
-<div class="jk-mid-banner">
-<div style="font-size: 18px; font-weight: 800; color: #0f172a;">⚡ 10초 컷! 나만의 공고 추천 받기</div>
-<div class="jk-mid-btns">
-<button class="jk-mid-btn">🛠️ 현장 실습이 최고예요</button>
-<button class="jk-mid-btn">📖 이론/설계가 더 좋아요</button>
+<div class="ms-mid-banner">
+<div style="font-size: 20px; font-weight: 800;">⚡ 10초 컷! 나만의 맞춤 공고 추천 받기</div>
+<div class="ms-mid-btns">
+<button class="ms-mid-btn">🛠️ 현장 실습이 최고예요</button>
+<button class="ms-mid-btn">📖 이론/설계가 더 좋아요</button>
 </div>
 </div>
-<div class="jk-job-section">
-<div class="jk-section-title">인기 실습 JOB</div>
-<div class="jk-chip-group">
-<div class="jk-chip active">기계·설비</div>
-<div class="jk-chip">전기·전자</div>
-<div class="jk-chip">소프트웨어</div>
-<div class="jk-chip">자동화·로봇</div>
-<div class="jk-chip">화학·신소재</div>
-<div class="jk-chip">건축·토목</div>
-<div class="jk-chip">디자인·설계</div>
-<div class="jk-chip">품질관리</div>
+<div class="ms-job-section">
+<div class="ms-section-title">인기 실습 JOB</div>
+<div class="ms-chip-group">
+<div class="ms-chip active">기계·설비</div>
+<div class="ms-chip">전기·전자</div>
+<div class="ms-chip">소프트웨어</div>
+<div class="ms-chip">자동화·로봇</div>
+<div class="ms-chip">화학·신소재</div>
+<div class="ms-chip">건축·토목</div>
+<div class="ms-chip">디자인·설계</div>
 </div>
-<div class="jk-job-grid">
-<div class="jk-job-card">
+<div class="ms-job-grid">
+<div class="ms-job-card">
 <div class="job-card-title">[삼성전자] 2026년 하반기 DS부문 5급 신입사원 채용</div>
 <div class="job-card-comp">
 <span>삼성전자(주)</span>
@@ -461,7 +372,7 @@ transition: all 0.2s ease;
 <span class="job-tag">기숙사 제공</span>
 </div>
 </div>
-<div class="jk-job-card">
+<div class="ms-job-card">
 <div class="job-card-title">2026 하반기 공개채용 [생산기술/보전 직무]</div>
 <div class="job-card-comp">
 <span>현대자동차</span>
@@ -472,7 +383,7 @@ transition: all 0.2s ease;
 <span class="job-tag">장기근속 포상</span>
 </div>
 </div>
-<div class="jk-job-card">
+<div class="ms-job-card">
 <div class="job-card-title">(주)포스코 '26년 하반기 제철설비 현장 실습생 모집</div>
 <div class="job-card-comp">
 <span>(주)포스코</span>
@@ -483,7 +394,7 @@ transition: all 0.2s ease;
 <span class="job-tag">인센티브</span>
 </div>
 </div>
-<div class="jk-job-card">
+<div class="ms-job-card">
 <div class="job-card-title">[LG에너지솔루션] 배터리 생산/품질 관리 신입 채용</div>
 <div class="job-card-comp">
 <span>LG에너지솔루션</span>
@@ -491,7 +402,7 @@ transition: all 0.2s ease;
 </div>
 <div class="job-tags">
 <span class="job-tag">품질관리</span>
-<span class="job-tag">기숙사</span>
+<span class="job-tag">기숙사 제공</span>
 </div>
 </div>
 </div>
@@ -501,11 +412,10 @@ transition: all 0.2s ease;
 
 
 # =========================================================
-# [PAGE 2] 서비스 소개 페이지 (토스/스픽 스타일 랜딩)
+# [PAGE 2] 서비스 소개 페이지 (토스/스픽 스타일 홍보 랜딩)
 # =========================================================
 elif st.session_state.page == "intro":
 
-    # 홍보 페이지 전용 CSS 주입
     intro_css = """
 <style>
 @import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
@@ -637,7 +547,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
 """
     st.markdown(intro_css, unsafe_allow_html=True)
 
-    # 🌟 상단 알약 네비게이션 바
     nav_html = """
 <div class="speak-navbar-container">
 <div class="speak-navbar">
@@ -657,7 +566,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
 """
     st.markdown(nav_html, unsafe_allow_html=True)
 
-    # 🌟 히어로 섹션
     hero_col1, hero_col2 = st.columns([1.05, 0.95], gap="large")
     with hero_col1:
         st.markdown(
@@ -704,7 +612,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
         else:
             st.warning("⚠️ 'main_image.png' 파일이 없습니다.")
 
-    # 🌟 서비스 기획 배경
     st.markdown(
         """
         <div class="scroll-section">
@@ -721,7 +628,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
     with bg_col2:
         st.markdown('<div class="modern-card"><h3>🚀 맞춤형 커리어 빌딩</h3><p>학생들이 흘린 실습의 땀방울을 데이터로 누적하고, 기업이 요구하는 핵심 직무 역량과 STAR 기법 자소서로 곧바로 전환하여 자신감 있게 취업 시장에 뛰어들도록 돕습니다.</p></div>', unsafe_allow_html=True)
 
-    # 🌟 핵심 기능 안내
     st.markdown(
         """
         <div class="scroll-section">
@@ -740,7 +646,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
     with f_col3:
         st.markdown('<div class="modern-card"><h3>✨ AI STAR 자소서 변환</h3><p>기록된 경험 데이터를 바탕으로 기업 맞춤형 STAR(상황-과제-행동-결과) 자기소개서를 자동 완성합니다.</p></div>', unsafe_allow_html=True)
 
-    # 🌟 FAQ
     st.markdown(
         """
         <div class="scroll-section">
@@ -769,7 +674,6 @@ margin-bottom: 20px; transition: all 0.3s ease;
         unsafe_allow_html=True,
     )
 
-    # 🌟 푸터
     st.markdown(
         """
         <div class="footer-container">
