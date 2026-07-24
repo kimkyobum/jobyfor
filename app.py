@@ -60,7 +60,7 @@ if st.session_state.page == "main":
         if st.button("👉 서비스 소개(홍보) 가기", use_container_width=True):
             navigate_to("intro")
 
-    # 메인 포털 전용 CSS
+    # 메인 포털 전용 CSS (중앙 정렬 및 UI 밸런스 개선)
     css_string = """
 <style>
 .block-container {
@@ -99,63 +99,63 @@ if st.session_state.page == "main":
     padding: 0 40px;
 }
 
-/* 헤더 & 검색창 */
+/* 🌟 헤더 (Grid를 이용해 검색창을 완벽히 중앙에 배치) */
 .ms-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 40px 0 30px 0;
 }
 .ms-logo {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 900;
     background: linear-gradient(90deg, #0f172a, #334155);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -1.5px;
     cursor: pointer;
+    justify-self: start;
 }
 .ms-search-box {
+    justify-self: center;
     display: flex;
     align-items: center;
     border: 1px solid rgba(226, 232, 240, 0.8);
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     border-radius: 100px;
     padding: 8px 8px 8px 24px;
-    width: 560px;
+    width: 600px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ms-search-box:focus-within {
     border-color: rgba(59, 178, 184, 0.4);
-    box-shadow: 0 15px 35px rgba(59, 178, 184, 0.1);
-    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 15px 40px rgba(59, 178, 184, 0.12);
+    background: #ffffff;
+    transform: translateY(-2px);
 }
 .ms-search-input {
     border: none; outline: none; width: 100%; font-size: 16px; font-family: 'SUIT'; color: #1e293b; background: transparent;
 }
-.ms-search-input::placeholder { color: #94a3b8; }
+.ms-search-input::placeholder { color: #94a3b8; font-weight: 500; }
 .ms-search-btn {
     background: linear-gradient(90deg, #3bb2b8, #7e57c2);
-    border: none; width: 44px; height: 44px; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(126,87,194,0.3); transition: transform 0.2s;
+    border: none; width: 46px; height: 46px; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(126,87,194,0.3); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.ms-search-btn:hover { transform: scale(1.05); }
+.ms-search-btn:hover { transform: scale(1.08); }
 
-.ms-auth-group { display: flex; gap: 12px; }
-.ms-btn-outline {
-    border: 1px solid rgba(226, 232, 240, 0.8); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-}
-.ms-btn-outline:hover { background: #ffffff; color: #0f172a; border-color: #cbd5e1; transform: translateY(-2px); }
-
-/* 네비게이션 (알약 탭 스타일) */
+/* 🌟 네비게이션 (메뉴들을 화면 중앙으로 모음) */
 .ms-nav {
-    display: flex; gap: 15px; padding-bottom: 30px;
+    display: flex; 
+    justify-content: center; /* 중앙 정렬로 안정감 확보 */
+    gap: 16px; 
+    padding-bottom: 40px;
 }
 .ms-nav span {
-    padding: 12px 24px; border-radius: 50px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(226, 232, 240, 0.6); font-size: 16px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px);
+    padding: 12px 26px; border-radius: 50px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(226, 232, 240, 0.6); font-size: 16px; font-weight: 700; color: #475569; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(10px);
 }
-.ms-nav span:hover { background: rgba(255, 255, 255, 0.9); color: #0f172a; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+.ms-nav span:hover { background: rgba(255, 255, 255, 0.95); color: #0f172a; box-shadow: 0 5px 15px rgba(0,0,0,0.04); transform: translateY(-2px); }
 .ms-nav span.active {
     background: #0f172a; color: white; border-color: #0f172a; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
 }
@@ -163,7 +163,7 @@ if st.session_state.page == "main":
 /* 메인 그리드 및 공통 글래스 카드 */
 .ms-main-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 30px; margin-top: 10px; }
 .glass-panel {
-    background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 28px; padding: 40px; border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03); transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-radius: 28px; padding: 40px; border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel:hover {
     background: rgba(255, 255, 255, 1); box-shadow: 0 30px 60px rgba(126, 87, 194, 0.08); border-color: rgba(126, 87, 194, 0.2); transform: translateY(-4px);
@@ -172,8 +172,8 @@ if st.session_state.page == "main":
 .ms-ai-title { font-size: 22px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
 .ms-ai-title span { background: linear-gradient(90deg, #3bb2b8, #7e57c2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .ms-ai-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
-.ms-ai-btn { background: #0f172a; color: white; border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; }
-.ms-ai-btn:hover { background: #1e293b; transform: translateY(-2px); }
+.ms-ai-btn { background: #0f172a; color: white; border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.ms-ai-btn:hover { background: #1e293b; transform: scale(1.05); }
 
 .blur-card-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; filter: blur(5px); opacity: 0.7; pointer-events: none; }
 .blur-card { background: #ffffff; border-radius: 16px; padding: 24px; height: 150px; border: 1px solid #f1f5f9; }
@@ -181,12 +181,12 @@ if st.session_state.page == "main":
 
 /* 우측 맞춤 정보 박스 */
 .ms-gradient-banner {
-    background: linear-gradient(135deg, rgba(59,178,184,0.15), rgba(126,87,194,0.15)); color: #0f172a; padding: 20px 24px; border-radius: 20px; font-weight: 800; font-size: 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 24px; border: 1px solid rgba(126,87,194,0.15); transition: all 0.3s;
+    background: linear-gradient(135deg, rgba(59,178,184,0.15), rgba(126,87,194,0.15)); color: #0f172a; padding: 20px 24px; border-radius: 20px; font-weight: 800; font-size: 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 24px; border: 1px solid rgba(126,87,194,0.15); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.ms-gradient-banner:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(126,87,194,0.1); }
+.ms-gradient-banner:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(126,87,194,0.15); }
 .ms-quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .ms-quick-item {
-    background: rgba(255,255,255,0.6); border: 1px solid rgba(226,232,240,0.8); border-radius: 20px; padding: 24px; font-size: 15px; font-weight: 700; color: #334155; display: flex; flex-direction: column; justify-content: space-between; height: 120px; cursor: pointer; transition: all 0.3s;
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(226,232,240,0.8); border-radius: 20px; padding: 24px; font-size: 15px; font-weight: 700; color: #334155; display: flex; flex-direction: column; justify-content: space-between; height: 120px; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ms-quick-item:hover { background: #ffffff; border-color: #3bb2b8; box-shadow: 0 15px 30px rgba(59,178,184,0.08); color: #0f172a; transform: translateY(-4px); }
 
@@ -197,9 +197,9 @@ if st.session_state.page == "main":
 .ms-mid-banner-title { font-size: 24px; font-weight: 800; color: #0f172a; }
 .ms-mid-btns { display: flex; gap: 16px; }
 .ms-mid-btn {
-    background: #ffffff; border: 1px solid rgba(226,232,240,0.8); padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 16px; color: #0f172a; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    background: #ffffff; border: 1px solid rgba(226,232,240,0.8); padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 16px; color: #0f172a; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 20px rgba(0,0,0,0.03);
 }
-.ms-mid-btn:hover { border-color: #7e57c2; box-shadow: 0 15px 30px rgba(126,87,194,0.15); transform: translateY(-3px); }
+.ms-mid-btn:hover { border-color: #7e57c2; box-shadow: 0 15px 30px rgba(126,87,194,0.15); transform: translateY(-4px); }
 
 /* 🌟 하단 인기 실습/JOB 섹션 */
 .ms-job-section { margin-bottom: 100px; }
@@ -207,10 +207,10 @@ if st.session_state.page == "main":
 
 .ms-chip-group { display: flex; gap: 12px; margin-bottom: 35px; overflow-x: auto; padding-bottom: 10px; }
 .ms-chip {
-    padding: 12px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; color: #64748b; background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); cursor: pointer; border: 1px solid rgba(226,232,240,0.8); transition: all 0.3s;
+    padding: 12px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; color: #64748b; background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); cursor: pointer; border: 1px solid rgba(226,232,240,0.8); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ms-chip.active { background: #0f172a; color: white; border-color: #0f172a; box-shadow: 0 8px 20px rgba(15,23,42,0.15); }
-.ms-chip:hover:not(.active) { background: #ffffff; color: #0f172a; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.ms-chip:hover:not(.active) { background: #ffffff; color: #0f172a; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transform: translateY(-2px); }
 
 .ms-job-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .ms-job-card {
@@ -226,25 +226,23 @@ if st.session_state.page == "main":
 """
     st.markdown(css_string, unsafe_allow_html=True)
     
-    # 🌟 HTML 구조 주입 (들여쓰기 없이 좌측 정렬)
+    # 🌟 HTML 구조 (들여쓰기 완전 제거)
     html_string = """<div class="ms-top-banner">
 <span class="ms-top-banner-badge">HOT</span>
 <span>커리어 고민 있다면? 마이스터고 출신 현직자 3인에게 물어보세요!</span>
 </div>
 <div class="ms-container">
+
 <div class="ms-header">
 <div class="ms-logo">MyStair</div>
 <div class="ms-search-box">
 <input type="text" class="ms-search-input" placeholder="관심 직무, 기업, 자격증을 검색해보세요">
 <button class="ms-search-btn">🔍</button>
 </div>
-<div class="ms-auth-group">
-<button class="ms-btn-outline">로그인</button>
-<button class="ms-btn-outline">선생님 워크스페이스</button>
-</div>
+<div></div><!-- 우측 공백 유지 (헤더 밸런스용) -->
 </div>
 
-<!-- 변경된 네비게이션 순서 -->
+<!-- 깔끔하게 중앙 정렬된 네비게이션 -->
 <div class="ms-nav">
 <span class="active">진로추천</span>
 <span>실습 JOB 찾기</span>
@@ -252,7 +250,6 @@ if st.session_state.page == "main":
 <span>MBTI</span>
 <span>홀랜드직무검사</span>
 <span>합격 자소서</span>
-<span>선배 톡톡</span>
 </div>
 
 <div class="ms-main-grid">
